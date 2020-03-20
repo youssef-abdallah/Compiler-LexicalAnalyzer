@@ -4,15 +4,10 @@ class RegularExpression {
 
 public:
     RegularExpression();
+    RegularExpression(string);
     ~RegularExpression();
-private:
-    std::string expression, postfixExpression;
-
-    void setPostfixExpression(string postfixExpression) {
-        this->postfixExpression = postfixExpression;
-    }
-
     string getPostfixExpression() {
+        if (postfixExpression == "") convertInfixToPostfix();
         return postfixExpression;
     }
 
@@ -23,4 +18,10 @@ private:
     string getExpression() {
         return expression;
     }
+
+private:
+    std::string expression, postfixExpression;
+    int getPrecedence(char);
+    bool isOperator(char);
+    void convertInfixToPostfix();
 };

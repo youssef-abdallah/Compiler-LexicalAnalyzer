@@ -1,8 +1,10 @@
 # depslib dependency file v1.0
-1584727840 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/main.cpp
+1584747327 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/main.cpp
 	"includes.h"
 	"include/NFAState.h"
 	"include/LexicalAnalyzer.h"
+	"include/RegularExpression.h"
+	"include/NFABuilder.h"
 
 1584724619 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/includes.h
 	<iostream>
@@ -17,30 +19,33 @@
 1584724477 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/LexicalAnalyzer.cpp
 	"LexicalAnalyzer.h"
 
-1584724667 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/LexicalAnalyzer.h
+1584732349 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/LexicalAnalyzer.h
 	"includes.h"
 
-1584724481 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/NFABuilder.cpp
-	"NFABuilder.h"
+1584745750 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/NFABuilder.cpp
+	"../include/NFABuilder.h"
 
-1584724673 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/NFABuilder.h
+1584745414 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/NFABuilder.h
 	"includes.h"
+	"NFAState.h"
+	"StateMachine.h"
 
 1584724485 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/NFAState.cpp
 	"NFAState.h"
 
-1584727729 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/NFAState.h
+1584741523 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/NFAState.h
 	"includes.h"
 
-1584722503 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/includes.h
+1584732752 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/includes.h
 	<iostream>
 	<vector>
 	<unordered_map>
+	<stack>
 
-1584724489 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/RegularExpression.cpp
-	"RegularExpression.h"
+1584741600 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/RegularExpression.cpp
+	"../include/RegularExpression.h"
 
-1584724619 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/RegularExpression.h
+1584736012 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/RegularExpression.h
 	"includes.h"
 
 1584724493 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/Scanner.cpp
@@ -48,4 +53,11 @@
 
 1584724367 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/Scanner.h
 	"includes.h"
+
+1584745679 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/StateMachine.h
+	"includes.h"
+	"NFAState.h"
+
+1584740383 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/StateMachine.cpp
+	"StateMachine.h"
 
