@@ -44,7 +44,7 @@ int RegularExpression::getPrecedence(char op) {
     if (op == '*' || op == '+') {
         return 3;
     }
-    if (op == '.') {
+    if (op == '~') {
         return 2;
     }
     if (op == '|') {
@@ -54,5 +54,5 @@ int RegularExpression::getPrecedence(char op) {
 }
 
 bool RegularExpression::isOperator(char symbol) {
-    return symbol == '*' || symbol == '|' || symbol == '.';
+    return symbol == '*' || symbol == '|' || symbol == '~';
 }

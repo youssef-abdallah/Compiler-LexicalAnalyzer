@@ -16,7 +16,7 @@ StateMachine NFABuilder::buildNFAFromPostfix(string postfix) {
             StateMachine fsm = st.top();
             st.pop();
             st.push(getTheMachineClosure(fsm));
-        } else if (postfix[i] == '.') {
+        } else if (postfix[i] == '~') {
             StateMachine fsm2 = st.top();
             st.pop();
             StateMachine fsm1 = st.top();
