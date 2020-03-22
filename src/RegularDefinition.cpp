@@ -28,10 +28,10 @@ string RegularDefinition::getDefinitionType() {
 
 string RegularDefinition::values_to_string() {
 	string result = "";
-	for (int i = 0; i < values.size; i++) {
+	for (int i = 0; i < (int) values.size(); i++) {
 		char next_value = values[i];
 		result = result + next_value ;
-		if (i != values.size - 1) {
+		if (i != (int) values.size() - 1) {
 			result = result + '|';
 		}
 	}

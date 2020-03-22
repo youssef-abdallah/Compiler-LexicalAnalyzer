@@ -1,3 +1,5 @@
+#ifndef LIST_H_
+#define LIST_H_
 #include "includes.h"
 
 struct NFAState {
@@ -36,3 +38,6 @@ private:
     unordered_map<char, vector<NFAState>> transitions;
     vector<NFAState> epsilonTransitions;
 };
+// List.h code
+
+#endif

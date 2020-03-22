@@ -1,8 +1,8 @@
 #pragma once
 #include "includes.h"
 #include <map>
-#include "../RegularDefinition.h"
-#include "../RegularExpression.h"
+#include "RegularDefinition.h"
+#include "RegularExpression.h"
 
 using namespace std;
 

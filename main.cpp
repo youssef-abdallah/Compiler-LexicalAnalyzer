@@ -1,11 +1,16 @@
 #include "includes.h"
 #include "include/NFAState.h"
 #include "include/LexicalAnalyzer.h"
+#include "include/RegularExpression.h"
+#include "include/NFABuilder.h"
+#include "include/Scanner.h"
 
 int main()
 {
-    NFAState state1(0), state2(0);
-    state1.addTransition(0, state2);
-    NFAState x = state1.getEpsilonTransitions()[0];
+    string x = "(0|(1.(0.1*.(0.0)*.0)*.1)*)*";
+    x = "0*";
+    RegularExpression regularExpression(x);
+    StateMachine nfa = NFABuilder::getInstance().buildNFAFromPostfix(regularExpression.getPostfixExpression());
+    Scanner::getInstance();
     return 0;
 }
