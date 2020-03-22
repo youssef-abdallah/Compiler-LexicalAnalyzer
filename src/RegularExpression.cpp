@@ -1,4 +1,4 @@
-#include "RegularExpression.h"
+#include "..\include\RegularExpression.h"
 
 RegularExpression::RegularExpression() {
 

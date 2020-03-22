@@ -5,8 +5,6 @@ class RegularExpression {
 public:
     RegularExpression();
     ~RegularExpression();
-private:
-    std::string expression, postfixExpression;
 
     void setPostfixExpression(string postfixExpression) {
         this->postfixExpression = postfixExpression;
@@ -23,4 +21,7 @@ private:
     string getExpression() {
         return expression;
     }
+private:
+    std::string expression, postfixExpression;
+
 };
