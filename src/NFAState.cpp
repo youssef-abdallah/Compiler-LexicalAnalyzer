@@ -1,4 +1,4 @@
-#include "NFAState.h"
+#include "../include/NFAState.h"
 
 NFAState::NFAState() {
 

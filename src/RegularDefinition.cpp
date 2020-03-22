@@ -1,4 +1,4 @@
-#include "RegularDefinition.h"
+#include "../include/RegularDefinition.h"
 
 RegularDefinition::RegularDefinition() {
 
