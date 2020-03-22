@@ -11,7 +11,7 @@ int main()
     x = "0*";
     RegularExpression regularExpression(x);
     StateMachine nfa = NFABuilder::getInstance().buildNFAFromPostfix(regularExpression.getPostfixExpression());
-    Scanner::getInstance().read_lexical_rules("D:\\compiler_repo\\test\\lexical_rules.txt");
+    Scanner::getInstance().read_lexical_rules("test/lexical_rules.txt");
     vector<string> k = Scanner::getInstance().keywords;
     cout << k[0];
     return 0;

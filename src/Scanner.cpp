@@ -1,4 +1,4 @@
-#include "..\include\Scanner.h"
+#include "Scanner.h"
 
 
 Scanner::Scanner() {
@@ -58,21 +58,21 @@ void Scanner::regular_def_scanner(string line){
     string RHS = line.substr(split_pos + 1, line.size() - split_pos);
     vector<int> or_positions = find_all_occurences(RHS, '|');
     int st = 0;
-    int end = RHS.size();
+    int endi = RHS.size();
     vector<char> values;
     if (or_positions.empty()) {
-        vector<char> v = add_values(RHS, st, end);
-        for (int i = 0; i < v.size(); i++) {
+        vector<char> v = add_values(RHS, st, endi);
+        for (int i = 0; i < (int) v.size(); i++) {
             values.push_back(v[i]);
         }
     }
-    for (int j = 0; j < or_positions.size(); j++) {
-        end = or_positions[j];
-        vector<char> v = add_values(RHS, st, end);
-        for (int i = 0; i < v.size(); i++) {
+    for (int j = 0; j < (int) or_positions.size(); j++) {
+        endi = or_positions[j];
+        vector<char> v = add_values(RHS, st, endi);
+        for (int i = 0; i < (int) v.size(); i++) {
             values.push_back(v[i]);
         }
-        st = end + 1;
+        st = endi + 1;
     }
     RegularDefinition rd;
     rd.setDefinitionType(definition_type);
@@ -88,7 +88,7 @@ void Scanner::regular_exp_scanner(string line) {
     string RHS = line.substr(split_pos + 1, line.size() - split_pos);
     //RHS.erase(std::remove_if(RHS.begin(), RHS.end(), ::isspace), RHS.end());
 
-    for (int i = 0; i < reg_definitions.size(); i++) {
+    for (int i = 0; i < (int) reg_definitions.size(); i++) {
         RegularDefinition rd = reg_definitions[i];
         string defType = rd.getDefinitionType();
         string replacement = rd.values_to_string();
@@ -110,7 +110,7 @@ void Scanner::regular_exp_scanner(string line) {
 
 vector<int> Scanner::find_all_occurences(string line, char delim) {
     vector<int> results;
-    for (int i = 0; i < line.size(); i++) {
+    for (int i = 0; i < (int) line.size(); i++) {
         if (line[i] == delim)
             results.push_back(i);
     }
@@ -118,9 +118,9 @@ vector<int> Scanner::find_all_occurences(string line, char delim) {
 }
 
 
-vector<char> add_values(string str, int start, int end) {
+vector<char> Scanner::add_values(string str, int start, int endi) {
     vector<char> results;
-    string line = str.substr(start, end - start);
+    string line = str.substr(start, endi - start);
     //line.erase(std::remove_if(line.begin(), line.end(), ::isspace), line.end());
     if (line.find('-') == string::npos) {
         results.push_back(line[start]);
@@ -145,13 +145,13 @@ string Scanner::remove_plus_operator(string line, string defType) {
         string RHS = line;
         int index;
         int pos = 0;
-        while ((index = RHS.find(defType + "+", pos)) != string::npos) {
+        while ((index = RHS.find(defType + "+", pos)) != (int) string::npos) {
             RHS.replace(index, defType.size() + 1, defType + defType + "*");
             pos = index + 1;
         }
 
         pos = 0;
-        while ((index = RHS.find(")+", pos)) != string::npos) {
+        while ((index = RHS.find(")+", pos)) != (int) string::npos) {
             int start_pos;
             for (int j = index; j >= 0; j--) {
                 if (RHS[j] == '(') {
@@ -173,11 +173,11 @@ string Scanner::replace_definitions(string line, string defType, string replacem
     string RHS = line;
     int index;
     int pos = 0;
-    while ((index = RHS.find(defType, pos)) != string::npos) {
+    while ((index = RHS.find(defType, pos)) != (int) string::npos) {
         RHS.replace(index, defType.size(), replacement + conc_operator);
         pos = index + 1;
     }
-
+    return RHS;
 }
 
 string Scanner::additional_manipulations(string line) {
@@ -185,19 +185,19 @@ string Scanner::additional_manipulations(string line) {
     int index;
     int pos = 0;
 
-    while ((index = RHS.find(conc_operator + "*", pos)) != string::npos) {
+    while ((index = RHS.find(conc_operator + "*", pos)) != (int) string::npos) {
         RHS.replace(index, 2, "*");
         pos = index + 1;
     }
 
     pos = 0;
-    while ((index = RHS.find(conc_operator + ")", pos)) != string::npos) {
+    while ((index = RHS.find(conc_operator + ")", pos)) != (int) string::npos) {
         RHS.replace(index, 2, ")");
         pos = index + 1;
     }
 
     pos = 0;
-    while ((index = RHS.find(conc_operator + "|", pos)) != string::npos) {
+    while ((index = RHS.find(conc_operator + "|", pos)) != (int) string::npos) {
         RHS.replace(index, 2, "|");
         pos = index + 1;
     }
@@ -213,13 +213,13 @@ string Scanner::handle_special_operators(string line) {
     string RHS = line;
     int index;
     int pos = 0;
-    while ((index = RHS.find("\\L", pos)) != string::npos) {
+    while ((index = RHS.find("\\L", pos)) != (int) string::npos) {
         RHS.replace(index, 2, "" + epsilon);
         pos = index + 1;
     }
 
     pos = 0;
-    while ((index = RHS.find("\\", pos)) != string::npos) {
+    while ((index = RHS.find("\\", pos)) != (int) string::npos) {
         RHS.replace(index, 1, "" );
         pos = index + 1;
     }

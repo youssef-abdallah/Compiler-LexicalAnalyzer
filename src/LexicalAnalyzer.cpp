@@ -1,4 +1,4 @@
-#include "..\include\LexicalAnalyzer.h"
+#include "LexicalAnalyzer.h"
 
 LexicalAnalyzer::LexicalAnalyzer() {
 
