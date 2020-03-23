@@ -9,7 +9,8 @@ int main()
 {
 
     string x = "(0|(1.(0.1*.(0.0)*.0)*.1)*)*";
-    x = "0*";
+    NFAState s1, s2, s3;
+    cout << s1.getStateId() << " " << s2.getStateId() << " " << s3.getStateId() << endl;
     RegularExpression regularExpression(x);
     StateMachine nfa = NFABuilder::getInstance().buildNFAFromPostfix(regularExpression.getPostfixExpression());
     Scanner::getInstance().read_lexical_rules("test/lexical_rules.txt");

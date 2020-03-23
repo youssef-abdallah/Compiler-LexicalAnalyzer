@@ -5,9 +5,13 @@
 struct NFAState {
 
 public:
-    NFAState();
+    NFAState() {
+        this->acceptState = 0;
+        this->stateId = stateCounter++;
+    }
     NFAState(bool acceptState) {
         this->acceptState = acceptState;
+        this->stateId = stateCounter++;
     }
     ~NFAState();
     void setAcceptState(bool acceptState) {
@@ -33,10 +37,22 @@ public:
     unordered_map<char, vector<NFAState>> getTransitions() {
         return this->transitions;
     }
+
+    static int getStateCounter() {
+        return NFAState::stateCounter;
+    }
+
+    int getStateId() {
+        return this->stateId;
+    }
+
 private:
+    static int stateCounter;
+    int stateId;
     bool acceptState;
     unordered_map<char, vector<NFAState>> transitions;
     vector<NFAState> epsilonTransitions;
+    vector<string> acceptStateTokens;
 };
 // List.h code
 
