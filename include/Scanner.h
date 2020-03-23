@@ -16,6 +16,10 @@ public:
     vector<string> keywords;
     vector<string> punctuations;
 
+    vector<RegularDefinition> reg_definitions;
+    vector<RegularExpression> reg_expressions;
+
+
     Scanner(Scanner const&) = delete;
     void operator=(Scanner const&) = delete;
 
@@ -24,8 +28,6 @@ private:
 
     char conc_operator = '~';
     char epsilon = 0;
-    vector<RegularDefinition> reg_definitions;
-    vector<RegularExpression> reg_expressions;
 
     void space_splitter(string line, char delim);
     void regular_def_scanner(string line);
@@ -36,4 +38,6 @@ private:
     string replace_definitions(string line, string defType, string replacement);
     string additional_manipulations(string line);
     string handle_special_operators(string line);
+    string remove_spaces(string line);
+
 };

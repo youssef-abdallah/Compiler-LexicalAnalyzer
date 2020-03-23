@@ -1,4 +1,4 @@
-#include "Scanner.h"
+#include "../include/Scanner.h"
 
 
 Scanner::Scanner() {
@@ -15,19 +15,27 @@ void Scanner::read_lexical_rules(std::string file_name){
     input_file.open (file_name, std::fstream::in | std::fstream::out | std::fstream::app);
     string next_line;
 
+
+
     if (input_file.is_open()){
         while (getline(input_file, next_line)){
-            if (next_line.find("{") != string::npos){
+            cout << next_line << endl;
+            if (next_line[0] == '{'){
                 space_splitter(next_line, '{');
-            } else if (next_line.find("[") != string::npos){
+            } else if (next_line[0] == '['){
                 space_splitter(next_line, '[');
             } else if (next_line.find(":") != string::npos){
+                next_line = remove_spaces(next_line);
                 regular_exp_scanner(next_line);
             } else if (next_line.find("=") != string::npos){
+                next_line = remove_spaces(next_line);
                 regular_def_scanner(next_line);
             }
+
         }
     }
+
+    input_file.close();
 
 }
 
@@ -36,45 +44,112 @@ void Scanner::space_splitter(string str, char delim)
 {
     string line = str;
     line = line.substr(1, line.size() - 2);
+    int index, pos;
+    pos = 0;
+    while ((index = line.find("\\", pos)) != (int) string::npos) {
+        line.replace(index, 1, "" );
+        pos = index + 1;
+    }
     std::istringstream ss;
     ss.str(line);
     std::string token;
     // we need to check for leading spaces in the output keywords
     if (delim == '{') {
-        while (std::getline(ss, token, delim)) {
+        while (std::getline(ss, token, ' ')) {
             keywords.push_back(token);
         }
     }
     else if (delim == '['){
-        while (std::getline(ss, token, delim)) {
+        while (std::getline(ss, token, ' ')) {
             punctuations.push_back(token);
         }
     }
 }
 
 void Scanner::regular_def_scanner(string line){
+    RegularDefinition rd;
     int split_pos = line.find('=');
     string definition_type = line.substr(0, split_pos);
     string RHS = line.substr(split_pos + 1, line.size() - split_pos);
+    string def_string = "";
+
     vector<int> or_positions = find_all_occurences(RHS, '|');
     int st = 0;
     int endi = RHS.size();
     vector<char> values;
+
     if (or_positions.empty()) {
         vector<char> v = add_values(RHS, st, endi);
-        for (int i = 0; i < (int) v.size(); i++) {
-            values.push_back(v[i]);
+        if (v.empty()){
+            for (int i = 0; i < (int) reg_definitions.size(); i++) {
+                RegularDefinition temp_rd = reg_definitions[i];
+                string defType = temp_rd.getDefinitionType();
+                string replacement = temp_rd.values_to_string();
+                if (defType + "+" == RHS.substr(st, defType.size() + 1)){
+                    string temp_s = rd.values_to_string();
+                    rd.set_values_string(temp_s + "|" + replacement + "~" + replacement + "*");
+                } else if(defType == RHS.substr(st, defType.size())){
+                    string temp_s = rd.values_to_string();
+                    rd.set_values_string(temp_s + "|" + replacement);
+                }
+            }
+        }
+        else {
+                rd.add_part_of_values(v);
         }
     }
+
     for (int j = 0; j < (int) or_positions.size(); j++) {
         endi = or_positions[j];
-        vector<char> v = add_values(RHS, st, endi);
+        vector<char> v ;
+        v = add_values(RHS, st, endi);
+        if (v.empty()){
+            for (int i = 0; i < (int) reg_definitions.size(); i++) {
+                RegularDefinition temp_rd = reg_definitions[i];
+                string defType = temp_rd.getDefinitionType();
+                string replacement = temp_rd.values_to_string();
+                if (defType + "+" == RHS.substr(st, defType.size() + 1)){
+                    string temp_s = rd.values_to_string();
+                    rd.set_values_string(temp_s + "|" + replacement + "~" + replacement + "*");
+                } else if(defType == RHS.substr(st, defType.size())){
+                    string temp_s = rd.values_to_string();
+                    rd.set_values_string(temp_s + "|" + replacement);
+                }
+            }
+        }
+        else{
+            rd.add_part_of_values(v);
+        }
+
         for (int i = 0; i < (int) v.size(); i++) {
             values.push_back(v[i]);
         }
         st = endi + 1;
+        if (j == (int) or_positions.size() - 1){
+            v = add_values(RHS, st, RHS.size());
+            if (v.empty()){
+            for (int i = 0; i < (int) reg_definitions.size(); i++) {
+                RegularDefinition temp_rd = reg_definitions[i];
+                string defType = temp_rd.getDefinitionType();
+                string replacement = temp_rd.values_to_string();
+                if (defType + "+" == RHS.substr(st, defType.size() + 1)){
+                    string temp_s = rd.values_to_string();
+                    rd.set_values_string(temp_s + "|" + replacement + "~" + replacement + "*");
+                } else if(defType == RHS.substr(st, defType.size())){
+                    string temp_s = rd.values_to_string();
+                    rd.set_values_string(temp_s + "|" + replacement);
+                }
+            }
+        }
+        else{
+            rd.add_part_of_values(v);
+        }
+            for (int i = 0; i < (int) v.size(); i++) {
+                values.push_back(v[i]);
+            }
+        }
     }
-    RegularDefinition rd;
+
     rd.setDefinitionType(definition_type);
     rd.setValues(values);
     reg_definitions.push_back(rd);
@@ -86,8 +161,7 @@ void Scanner::regular_exp_scanner(string line) {
     int split_pos = line.find(':');
     string expression_type = line.substr(0, split_pos);
     string RHS = line.substr(split_pos + 1, line.size() - split_pos);
-    //RHS.erase(std::remove_if(RHS.begin(), RHS.end(), ::isspace), RHS.end());
-
+    sort(reg_definitions.begin(), reg_definitions.end());
     for (int i = 0; i < (int) reg_definitions.size(); i++) {
         RegularDefinition rd = reg_definitions[i];
         string defType = rd.getDefinitionType();
@@ -121,9 +195,8 @@ vector<int> Scanner::find_all_occurences(string line, char delim) {
 vector<char> Scanner::add_values(string str, int start, int endi) {
     vector<char> results;
     string line = str.substr(start, endi - start);
-    //line.erase(std::remove_if(line.begin(), line.end(), ::isspace), line.end());
     if (line.find('-') == string::npos) {
-        results.push_back(line[start]);
+        if (str.size() == 1) results.push_back(line[start]);
     }
     else {
         int pos = line.find('-');
@@ -174,7 +247,12 @@ string Scanner::replace_definitions(string line, string defType, string replacem
     int index;
     int pos = 0;
     while ((index = RHS.find(defType, pos)) != (int) string::npos) {
-        RHS.replace(index, defType.size(), replacement + conc_operator);
+        if (replacement.find(")|") != string::npos){
+            RHS.replace(index, defType.size(), "(" + replacement + ")" + conc_operator);
+        } else {
+            RHS.replace(index, defType.size(), replacement + conc_operator);
+        }
+
         pos = index + 1;
     }
     return RHS;
@@ -185,19 +263,24 @@ string Scanner::additional_manipulations(string line) {
     int index;
     int pos = 0;
 
-    while ((index = RHS.find(conc_operator + "*", pos)) != (int) string::npos) {
+    while ((index = RHS.find("~*", pos)) != (int) string::npos) {
+        RHS.replace(index, 2, "*");
+        pos = index + 1;
+    }
+
+    while ((index = RHS.find("~+", pos)) != (int) string::npos) {
         RHS.replace(index, 2, "*");
         pos = index + 1;
     }
 
     pos = 0;
-    while ((index = RHS.find(conc_operator + ")", pos)) != (int) string::npos) {
+    while ((index = RHS.find("~)", pos)) != (int) string::npos) {
         RHS.replace(index, 2, ")");
         pos = index + 1;
     }
 
     pos = 0;
-    while ((index = RHS.find(conc_operator + "|", pos)) != (int) string::npos) {
+    while ((index = RHS.find("~|", pos)) != (int) string::npos) {
         RHS.replace(index, 2, "|");
         pos = index + 1;
     }
@@ -226,3 +309,15 @@ string Scanner::handle_special_operators(string line) {
 
     return RHS;
 }
+
+string Scanner::remove_spaces(string line){
+    string str = line;
+    int index;
+    int pos = 0;
+    while ((index = str.find(" ", pos)) != (int) string::npos) {
+        str.replace(index, 1, "" );
+        pos = index + 1;
+    }
+    return str;
+}
+

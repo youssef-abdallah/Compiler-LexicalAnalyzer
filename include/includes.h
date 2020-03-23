@@ -2,8 +2,7 @@
 #include <vector>
 #include <unordered_map>
 #include <stack>
-#include "fstream"
-#include "iostream"
+#include <fstream>
 #include <sstream>
-
+#include <bits/stdc++.h>
 using namespace std;
