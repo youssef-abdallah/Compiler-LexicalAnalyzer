@@ -12,7 +12,11 @@ NFABuilder& NFABuilder::getInstance() {
 StateMachine NFABuilder::buildNFAFromPostfix(string postfix) {
     stack<StateMachine> st;
     for (int i = 0; i < (int) postfix.length(); i++) {
-        if (postfix[i] == '*') {
+        if (postfix[i] == '\\') {
+            i++;
+            st.push(stateMachineOfSymbol(postfix[i]));
+        }
+        else if (postfix[i] == '*') {
             StateMachine fsm = st.top();
             st.pop();
             st.push(getTheMachineClosure(fsm));
