@@ -11,7 +11,7 @@ public:
 
     NFABuilder(NFABuilder const&) = delete;
     void operator=(NFABuilder const&) = delete;
-    static StateMachine buildNFAFromPostfix(string);
+    static StateMachine buildNFAFromPostfix(string, string);
 
 private:
     NFABuilder();

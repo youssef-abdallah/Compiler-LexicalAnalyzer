@@ -9,10 +9,14 @@ NFABuilder& NFABuilder::getInstance() {
     return instance;
 }
 
-StateMachine NFABuilder::buildNFAFromPostfix(string postfix) {
+StateMachine NFABuilder::buildNFAFromPostfix(string postfix, string regularExpression) {
     stack<StateMachine> st;
     for (int i = 0; i < (int) postfix.length(); i++) {
-        if (postfix[i] == '*') {
+        if (postfix[i] == '\\') {
+            i++;
+            st.push(stateMachineOfSymbol(postfix[i]));
+        }
+        else if (postfix[i] == '*') {
             StateMachine fsm = st.top();
             st.pop();
             st.push(getTheMachineClosure(fsm));
@@ -32,6 +36,7 @@ StateMachine NFABuilder::buildNFAFromPostfix(string postfix) {
             st.push(stateMachineOfSymbol(postfix[i]));
         }
     }
+    st.top().getFinalState().setAcceptStateToken(regularExpression);
     return st.top();
 }
 

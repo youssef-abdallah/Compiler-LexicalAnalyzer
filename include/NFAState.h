@@ -46,13 +46,17 @@ public:
         return this->stateId;
     }
 
+    void setAcceptStateToken(string token) {
+        this->acceptStateToken = token;
+    }
+
 private:
     static int stateCounter;
     int stateId;
     bool acceptState;
     unordered_map<char, vector<NFAState>> transitions;
     vector<NFAState> epsilonTransitions;
-    vector<string> acceptStateTokens;
+    string acceptStateToken;
 };
 // List.h code
 
