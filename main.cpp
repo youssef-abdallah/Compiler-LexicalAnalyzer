@@ -20,7 +20,7 @@ int main()
     //cout << rd.values_to_string();
 
     vector<RegularExpression> vre = Scanner::getInstance().reg_expressions;
-    //cout << vre[0].getExpression() << endl << endl << vre[1].getExpression() << endl << endl << vre[2].getExpression() << endl;
+    cout << vre[2].getExpression() << endl << endl << vre[3].getExpression() << endl << endl << vre[4].getExpression() << endl << endl << vre[5].getExpression() << endl;
 
 return 0;
 

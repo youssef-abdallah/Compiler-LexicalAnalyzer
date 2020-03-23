@@ -28,6 +28,7 @@ private:
 
     char conc_operator = '~';
     char epsilon = 0;
+    bool has_definitions = false;
 
     void space_splitter(string line, char delim);
     void regular_def_scanner(string line);
@@ -39,5 +40,7 @@ private:
     string additional_manipulations(string line);
     string handle_special_operators(string line);
     string remove_spaces(string line);
+    string insert_concatination_op(string line, int st, int length);
+    string add_backslash_before(string line, string s);
 
 };

@@ -158,6 +158,7 @@ void Scanner::regular_def_scanner(string line){
 
 
 void Scanner::regular_exp_scanner(string line) {
+    has_definitions = false;
     int split_pos = line.find(':');
     string expression_type = line.substr(0, split_pos);
     string RHS = line.substr(split_pos + 1, line.size() - split_pos);
@@ -166,13 +167,13 @@ void Scanner::regular_exp_scanner(string line) {
         RegularDefinition rd = reg_definitions[i];
         string defType = rd.getDefinitionType();
         string replacement = rd.values_to_string();
-
         RHS = remove_plus_operator(RHS, defType);
         RHS = replace_definitions(RHS, defType, replacement);
-        RHS = handle_special_operators(RHS);
-        RHS = additional_manipulations(RHS);
 
     }
+
+        RHS = handle_special_operators(RHS);
+        RHS = additional_manipulations(RHS);
 
 
     RegularExpression re;
@@ -248,8 +249,10 @@ string Scanner::replace_definitions(string line, string defType, string replacem
     int pos = 0;
     while ((index = RHS.find(defType, pos)) != (int) string::npos) {
         if (replacement.find(")|") != string::npos){
+            has_definitions = true;
             RHS.replace(index, defType.size(), "(" + replacement + ")" + conc_operator);
         } else {
+            has_definitions = true;
             RHS.replace(index, defType.size(), replacement + conc_operator);
         }
 
@@ -267,12 +270,12 @@ string Scanner::additional_manipulations(string line) {
         RHS.replace(index, 2, "*");
         pos = index + 1;
     }
-
+/*
     while ((index = RHS.find("~+", pos)) != (int) string::npos) {
         RHS.replace(index, 2, "*");
         pos = index + 1;
     }
-
+*/
     pos = 0;
     while ((index = RHS.find("~)", pos)) != (int) string::npos) {
         RHS.replace(index, 2, ")");
@@ -307,6 +310,24 @@ string Scanner::handle_special_operators(string line) {
         pos = index + 1;
     }
 
+    if (!has_definitions){
+
+        RHS = add_backslash_before(RHS, "*");
+        RHS = add_backslash_before(RHS, "+");
+        RHS = add_backslash_before(RHS, "~");
+        pos = 0;
+        while ((index = RHS.find("|", pos)) != (int) string::npos) {
+            if (index - pos > 1){
+                RHS = insert_concatination_op(RHS, pos, index - pos);
+            }
+            pos = index + 1;
+        }
+        if (pos != 0){
+            RHS = insert_concatination_op(RHS, pos, RHS.size() - pos + 1);
+        }
+
+    }
+
     return RHS;
 }
 
@@ -321,3 +342,32 @@ string Scanner::remove_spaces(string line){
     return str;
 }
 
+string Scanner::insert_concatination_op(string line, int st, int length){
+    string str = line;
+    int pos = st;
+    int i = length - 1;
+    while (i > 0){
+        string LHS = str.substr(0, pos - 0 + 1);
+        if (LHS[LHS.size() - 1] == '\\') {
+            i--;
+            continue;
+        }
+        string RHS = str.substr(pos + 1, str.size() - pos);
+        str = LHS + conc_operator + RHS;
+        pos += 2;
+        i--;
+    }
+    return str;
+}
+
+string Scanner::add_backslash_before(string line, string op){
+    string str = line;
+    int index;
+    int pos = 0;
+    while ((index = str.find(op, pos)) != (int) string::npos) {
+
+        str.replace(index, 1, "\\" + op );
+        pos = index + 2;
+    }
+    return str;
+}

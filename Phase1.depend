@@ -69,3 +69,73 @@
 1584908271 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/StateMachine.cpp
 	"../include/StateMachine.h"
 
+1584909849 source:/home/karim/Desktop/CSED21/compiler_repo/src/LexicalAnalyzer.cpp
+	"../include/LexicalAnalyzer.h"
+
+1584909592 /home/karim/Desktop/CSED21/compiler_repo/include/LexicalAnalyzer.h
+	"includes.h"
+
+1584931697 /home/karim/Desktop/CSED21/compiler_repo/include/includes.h
+	<iostream>
+	<vector>
+	<unordered_map>
+	<stack>
+	<fstream>
+	<sstream>
+	<bits/stdc++.h>
+
+1584909592 source:/home/karim/Desktop/CSED21/compiler_repo/src/NFABuilder.cpp
+	"../include/NFABuilder.h"
+
+1584909592 /home/karim/Desktop/CSED21/compiler_repo/include/NFABuilder.h
+	"includes.h"
+	"NFAState.h"
+	"StateMachine.h"
+
+1584971053 /home/karim/Desktop/CSED21/compiler_repo/include/NFAState.h
+	"includes.h"
+
+1584909592 /home/karim/Desktop/CSED21/compiler_repo/include/StateMachine.h
+	"includes.h"
+	"NFAState.h"
+
+1584971053 source:/home/karim/Desktop/CSED21/compiler_repo/src/NFAState.cpp
+	"../include/NFAState.h"
+
+1584965081 source:/home/karim/Desktop/CSED21/compiler_repo/src/RegularDefinition.cpp
+	"../include/RegularDefinition.h"
+
+1584964911 /home/karim/Desktop/CSED21/compiler_repo/include/RegularDefinition.h
+	"includes.h"
+
+1584909592 source:/home/karim/Desktop/CSED21/compiler_repo/src/RegularExpression.cpp
+	"../include/RegularExpression.h"
+
+1584909592 /home/karim/Desktop/CSED21/compiler_repo/include/RegularExpression.h
+	"includes.h"
+
+1584976230 source:/home/karim/Desktop/CSED21/compiler_repo/src/Scanner.cpp
+	"../include/Scanner.h"
+
+1584975873 /home/karim/Desktop/CSED21/compiler_repo/include/Scanner.h
+	"includes.h"
+	<map>
+	"RegularDefinition.h"
+	"RegularExpression.h"
+
+1584909592 source:/home/karim/Desktop/CSED21/compiler_repo/src/StateMachine.cpp
+	"../include/StateMachine.h"
+
+1584975631 source:/home/karim/Desktop/CSED21/compiler_repo/main.cpp
+	"includes.h"
+	"include/NFAState.h"
+	"include/LexicalAnalyzer.h"
+	"include/RegularExpression.h"
+	"include/NFABuilder.h"
+	"include/Scanner.h"
+
+1584909592 /home/karim/Desktop/CSED21/compiler_repo/includes.h
+	<iostream>
+	<vector>
+	<unordered_map>
+
