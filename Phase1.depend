@@ -20,7 +20,7 @@
 	<sstream>
 	<bits/stdc++.h>
 
-1585080954 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/LexicalAnalyzer.h
+1585084296 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/LexicalAnalyzer.h
 	"includes.h"
 	"NFAState.h"
 	"LexicalAnalyzer.h"
@@ -51,7 +51,7 @@
 1584974940 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/RegularDefinition.h
 	"includes.h"
 
-1585082118 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/LexicalAnalyzer.cpp
+1585085653 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/LexicalAnalyzer.cpp
 	"../include/LexicalAnalyzer.h"
 
 1585080079 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/NFABuilder.cpp

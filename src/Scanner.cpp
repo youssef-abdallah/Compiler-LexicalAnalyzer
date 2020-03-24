@@ -288,6 +288,14 @@ string Scanner::additional_manipulations(string line) {
         pos = index + 1;
     }
 
+    pos = 0;
+    while ((index = RHS.find(".", pos)) != (int) string::npos) {
+        string L = RHS.substr(0, index - 0 - 1);
+        string R = RHS.substr(index + 1, RHS.size() - index - 1 + 1);
+        RHS = L + "~.~" + R;
+        pos = index + 1;
+    }
+
     if (RHS[RHS.size() - 1] == conc_operator) {
         RHS.replace(RHS.size() - 1, 1, "");
     }
