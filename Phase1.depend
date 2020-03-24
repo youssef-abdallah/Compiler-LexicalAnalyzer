@@ -140,3 +140,88 @@
 	<vector>
 	<unordered_map>
 
+1584985835 source:e:\handasa\3\compilers\main.cpp
+	"includes.h"
+	"LexicalAnalyzer.h"
+
+1584973281 e:\handasa\3\compilers\includes.h
+	<iostream>
+	<vector>
+	<unordered_map>
+
+1585000166 e:\handasa\3\compilers\include\lexicalanalyzer.h
+	"includes.h"
+	"NFAState.h"
+	"LexicalAnalyzer.h"
+	"RegularExpression.h"
+	"NFABuilder.h"
+	"Scanner.h"
+	"DFABuilder.h"
+
+1584973281 e:\handasa\3\compilers\include\includes.h
+	<iostream>
+	<vector>
+	<unordered_map>
+	<stack>
+	<fstream>
+	<sstream>
+	<bits/stdc++.h>
+
+1585009577 e:\handasa\3\compilers\include\nfastate.h
+	"includes.h"
+
+1584973281 e:\handasa\3\compilers\include\regularexpression.h
+	"includes.h"
+
+1584985835 e:\handasa\3\compilers\include\nfabuilder.h
+	"includes.h"
+	"NFAState.h"
+	"StateMachine.h"
+
+1585001133 e:\handasa\3\compilers\include\statemachine.h
+	"includes.h"
+	"NFAState.h"
+
+1584985835 e:\handasa\3\compilers\include\scanner.h
+	"includes.h"
+	<map>
+	"RegularDefinition.h"
+	"RegularExpression.h"
+
+1584973281 e:\handasa\3\compilers\include\regulardefinition.h
+	"includes.h"
+
+1585005568 e:\handasa\3\compilers\include\dfabuilder.h
+	"NFAState.h"
+	"StateMachine.h"
+
+1584985835 source:e:\handasa\3\compilers\src\nfabuilder.cpp
+	"../include/NFABuilder.h"
+
+1584973281 source:e:\handasa\3\compilers\src\nfastate.cpp
+	"../include/NFAState.h"
+
+1584973281 source:e:\handasa\3\compilers\src\regulardefinition.cpp
+	"../include/RegularDefinition.h"
+
+1584985835 source:e:\handasa\3\compilers\src\regularexpression.cpp
+	"../include/RegularExpression.h"
+
+1584985835 source:e:\handasa\3\compilers\src\scanner.cpp
+	"../include/Scanner.h"
+
+1584973281 source:e:\handasa\3\compilers\src\statemachine.cpp
+	"../include/StateMachine.h"
+
+1585006990 source:e:\handasa\3\compilers\src\dfabuilder.cpp
+	"DFABuilder.h"
+
+1584987861 source:e:\handasa\3\compilers\src\dfastate.cpp
+	"DFAState.h"
+
+1584989605 e:\handasa\3\compilers\include\dfastate.h
+	"includes.h"
+
+1585003137 source:e:\handasa\3\compilers\src\lexicalanalyzer.cpp
+	"../include/LexicalAnalyzer.h"
+

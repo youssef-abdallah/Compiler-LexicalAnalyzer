@@ -18,6 +18,8 @@ void LexicalAnalyzer::execute() {
                                                                  regularExpression.getExpression()));
     }
     StateMachine combinedStateMachine = LexicalAnalyzer::combineStateMachines(stateMachines);
+    DFABuilder builder(combinedStateMachine);
+    builder.calculateEpsilonClosure();
 }
 
 StateMachine LexicalAnalyzer::combineStateMachines(vector<StateMachine> &stateMachines) {

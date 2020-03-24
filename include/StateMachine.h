@@ -1,5 +1,7 @@
+#pragma once
 #include "includes.h"
 #include "NFAState.h"
+
 
 
 class StateMachine

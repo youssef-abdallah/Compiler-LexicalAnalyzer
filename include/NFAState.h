@@ -49,7 +49,13 @@ public:
     void setAcceptStateToken(string token) {
         this->acceptStateToken = token;
     }
-
+    void setEpsilonClosure(vector<NFAState> eClosure){
+        this->epsilonClosure = eClosure;
+    }
+    vector<NFAState> & getEpsilonClosure(){
+        return this->epsilonClosure;
+    }
+    vector<NFAState> epsilonClosure;
 private:
     static int stateCounter;
     int stateId;
@@ -57,6 +63,7 @@ private:
     unordered_map<char, vector<NFAState>> transitions;
     vector<NFAState> epsilonTransitions;
     string acceptStateToken;
+
 };
 // List.h code
 
