@@ -2,6 +2,7 @@
 #define DFABUILDER_H
 #include "NFAState.h"
 #include "StateMachine.h"
+#include "includes.h"
 
 
 class DFABuilder

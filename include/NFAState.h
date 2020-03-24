@@ -1,5 +1,5 @@
-#ifndef LIST_H_
-#define LIST_H_
+#ifndef NFASTATE_H
+#define NFASTATE_H
 #include "includes.h"
 
 struct NFAState {
@@ -52,19 +52,19 @@ public:
     void setEpsilonClosure(vector<NFAState> eClosure){
         this->epsilonClosure = eClosure;
     }
-    vector<NFAState> getEpsilonClosure(){
+    vector<NFAState> & getEpsilonClosure() {
         return this->epsilonClosure;
     }
-    vector<NFAState> epsilonClosure;
+
 private:
     static int stateCounter;
     int stateId;
     bool acceptState;
     unordered_map<char, vector<NFAState>> transitions;
     vector<NFAState> epsilonTransitions;
+    vector<NFAState> epsilonClosure;
     string acceptStateToken;
 
 };
-// List.h code
 
 #endif

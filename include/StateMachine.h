@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STATEMACHINE_H
+#define STATEMACHINE_H
 #include "includes.h"
 #include "NFAState.h"
 
@@ -30,3 +31,4 @@ class StateMachine
         NFAState finalState;
 };
 
+#endif
