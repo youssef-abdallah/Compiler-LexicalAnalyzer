@@ -11,7 +11,7 @@ LexicalAnalyzer& LexicalAnalyzer::getInstance() {
 
 void LexicalAnalyzer::execute() {
     Scanner::getInstance().read_lexical_rules("./test/lexical_rules.txt");
-    vector<RegularExpression> regularExpressions = Scanner::getInstance().reg_expressions;
+    /*vector<RegularExpression> regularExpressions = Scanner::getInstance().reg_expressions;
     vector<StateMachine> stateMachines;
     for (RegularExpression regularExpression : regularExpressions) {
         stateMachines.push_back(NFABuilder::buildNFAFromPostfix(regularExpression.getPostfixExpression(),
@@ -20,13 +20,16 @@ void LexicalAnalyzer::execute() {
     StateMachine combinedStateMachine = LexicalAnalyzer::combineStateMachines(stateMachines);
     DFABuilder builder(combinedStateMachine);
     builder.calculateEpsilonClosure();
+    NFASimulator simulator;*/
+    //cout << simulator.simulate(combinedStateMachine, "sum");
 }
 
 StateMachine LexicalAnalyzer::combineStateMachines(vector<StateMachine> &stateMachines) {
     NFAState initialState(0);
+    NFAState finalState(0);
     for (StateMachine &stateMachine: stateMachines) {
         initialState.addTransition(0, stateMachine.getInitialState());
     }
     // There are multiple final states in this machine, so set its final state to null.
-    return StateMachine(initialState, 0);
+    return StateMachine(initialState, finalState);
 }

@@ -45,7 +45,7 @@ void RegularExpression::convertInfixToPostfix() {
 }
 
 int RegularExpression::getPrecedence(char op) {
-    if (op == '*' || op == '+') {
+    if (op == '*') {
         return 3;
     }
     if (op == '~') {

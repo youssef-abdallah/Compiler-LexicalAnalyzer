@@ -9,8 +9,9 @@ NFABuilder& NFABuilder::getInstance() {
     return instance;
 }
 
-StateMachine NFABuilder::buildNFAFromPostfix(string postfix, string regularExpression) {
+StateMachine& NFABuilder::buildNFAFromPostfix(string postfix, string regularExpression) {
     stack<StateMachine> st;
+    cout << postfix << endl;
     for (int i = 0; i < (int) postfix.length(); i++) {
         if (postfix[i] == '\\') {
             i++;
@@ -40,36 +41,38 @@ StateMachine NFABuilder::buildNFAFromPostfix(string postfix, string regularExpre
     return st.top();
 }
 
-StateMachine NFABuilder::stateMachineOfSymbol(char symbol) {
-    NFAState initialState(0), finalState(1);
+StateMachine& NFABuilder::stateMachineOfSymbol(char symbol) {
+    NFAState& initialState = *new NFAState(0);
+    NFAState&  finalState = *new NFAState(1);
     initialState.addTransition(symbol, finalState);
-    return StateMachine(initialState, finalState);
+    return *new StateMachine(initialState, finalState);
 }
 
-StateMachine NFABuilder::concatenateTwoMachines(StateMachine &fsm1, StateMachine &fsm2) {
+StateMachine& NFABuilder::concatenateTwoMachines(StateMachine &fsm1, StateMachine &fsm2) {
     fsm1.getFinalState().setAcceptState(0);
     fsm1.getFinalState().addTransition(0, fsm2.getInitialState());
-    return StateMachine(fsm1.getInitialState(), fsm2.getFinalState());
+    return *new StateMachine(fsm1.getInitialState(), fsm2.getFinalState());
 }
 
-StateMachine NFABuilder::unifyTwoMachines(StateMachine &fsm1, StateMachine &fsm2) {
-    NFAState initialState(0);
+StateMachine& NFABuilder::unifyTwoMachines(StateMachine &fsm1, StateMachine &fsm2) {
+    NFAState& initialState = *new NFAState(0);
     initialState.addTransition(0, fsm1.getInitialState());
     initialState.addTransition(0, fsm2.getInitialState());
-    NFAState finalState(1);
+    NFAState& finalState = *new NFAState(1);
     fsm1.getFinalState().setAcceptState(0);
     fsm2.getFinalState().setAcceptState(0);
     fsm1.getFinalState().addTransition(0, finalState);
     fsm2.getFinalState().addTransition(0, finalState);
-    return StateMachine(initialState, finalState);
+    return *new StateMachine(initialState, finalState);
 }
 
-StateMachine NFABuilder::getTheMachineClosure(StateMachine &fsm) {
-    NFAState initialState(0), finalState(1);
+StateMachine& NFABuilder::getTheMachineClosure(StateMachine &fsm) {
+    NFAState& initialState = *new NFAState(0);
+    NFAState& finalState = *new NFAState(1);
     initialState.addTransition(0, finalState);
     initialState.addTransition(0, fsm.getInitialState());
     fsm.getFinalState().setAcceptState(0);
     fsm.getFinalState().addTransition(0, fsm.getInitialState());
     fsm.getFinalState().addTransition(0, fsm.getFinalState());
-    return StateMachine(initialState, finalState);
+    return *new StateMachine(initialState, finalState);
 }

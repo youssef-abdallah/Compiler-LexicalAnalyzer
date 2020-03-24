@@ -9,15 +9,14 @@ class StateMachine
 {
     public:
         StateMachine();
-        StateMachine(NFAState initialState, NFAState finalState) {
-            this->initialState = initialState;
-            this->finalState = finalState;
+        StateMachine(NFAState &_initialState, NFAState &_finalState):initialState(_initialState), finalState(_finalState) {
+
         }
         virtual ~StateMachine();
-        NFAState getInitialState() {
+        NFAState& getInitialState() {
             return this->initialState;
         }
-        NFAState getFinalState() {
+        NFAState& getFinalState() {
             return this->finalState;
         }
         void setInitialState(NFAState &state) {
@@ -26,9 +25,10 @@ class StateMachine
         void setFinalState(NFAState &state) {
             this->finalState = state;
         }
+        void concatenate(StateMachine &);
     private:
-        NFAState initialState;
-        NFAState finalState;
+        NFAState& initialState;
+        NFAState& finalState;
 };
 
 #endif

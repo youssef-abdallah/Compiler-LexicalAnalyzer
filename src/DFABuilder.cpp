@@ -1,9 +1,5 @@
 #include "DFABuilder.h"
 
-DFABuilder::DFABuilder()
-{
-    //ctor
-}
 
 DFABuilder::~DFABuilder()
 {
@@ -13,7 +9,8 @@ DFABuilder::~DFABuilder()
 void DFABuilder::calculateEpsilonClosure()
 {
     int calculated[2000] = {0};
-    NFAState state = machineNFA.getInitialState();
+    NFAState &state = machineNFA.getInitialState();
+    calculateEpsilonClosure(state);
     calculated[state.getStateId()] = 1;
     stack<NFAState> st;
     st.push(state);
@@ -59,16 +56,15 @@ void DFABuilder::calculateEpsilonClosure(NFAState &state)
     {
         NFAState currentState = st.top();
         st.pop();
-        for (int i = 0; i < (int) currentState.getEpsilonTransitions().size(); i++)
+        for (NFAState & s: currentState.getEpsilonTransitions())
         {
-            if(added[currentState.getEpsilonTransitions()[i].getStateId()] == 0)
+            if (added[s.getStateId()] == 0)
             {
-                st.push(currentState.getEpsilonTransitions()[i]);
-                state.getEpsilonClosure().push_back(currentState.getEpsilonTransitions()[i]);
-                added[currentState.getEpsilonTransitions()[i].getStateId()] = 1;
+                st.push(s);
+                state.getEpsilonClosure().push_back(s);
+                added[s.getStateId()] = 1;
             }
         }
     }
     //state.setEpsilonClosure(stateClosure);
-
 }

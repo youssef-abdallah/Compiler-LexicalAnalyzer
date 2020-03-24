@@ -8,9 +8,8 @@
 class DFABuilder
 {
     public:
-        DFABuilder();
-        DFABuilder(StateMachine &machine){
-            this->machineNFA = machine;
+        DFABuilder(StateMachine &machine): machineNFA(machine){
+
         }
         virtual ~DFABuilder();
         void calculateEpsilonClosure();
@@ -18,7 +17,7 @@ class DFABuilder
     private:
         /*vector<NFAState>*/
         void calculateEpsilonClosure(NFAState &state);
-        StateMachine machineNFA;
+        StateMachine &machineNFA;
 };
 
 #endif // DFABUILDER_H
