@@ -150,7 +150,7 @@
 	<vector>
 	<unordered_map>
 
-1585000166 e:\handasa\3\compilers\include\lexicalanalyzer.h
+1585051924 e:\handasa\3\compilers\include\lexicalanalyzer.h
 	"includes.h"
 	"NFAState.h"
 	"LexicalAnalyzer.h"
@@ -168,7 +168,7 @@
 	<sstream>
 	<bits/stdc++.h>
 
-1585009577 e:\handasa\3\compilers\include\nfastate.h
+1585051924 e:\handasa\3\compilers\include\nfastate.h
 	"includes.h"
 
 1584973281 e:\handasa\3\compilers\include\regularexpression.h
@@ -179,7 +179,7 @@
 	"NFAState.h"
 	"StateMachine.h"
 
-1585001133 e:\handasa\3\compilers\include\statemachine.h
+1585051924 e:\handasa\3\compilers\include\statemachine.h
 	"includes.h"
 	"NFAState.h"
 
@@ -192,9 +192,10 @@
 1584973281 e:\handasa\3\compilers\include\regulardefinition.h
 	"includes.h"
 
-1585005568 e:\handasa\3\compilers\include\dfabuilder.h
+1585051923 e:\handasa\3\compilers\include\dfabuilder.h
 	"NFAState.h"
 	"StateMachine.h"
+	"includes.h"
 
 1584985835 source:e:\handasa\3\compilers\src\nfabuilder.cpp
 	"../include/NFABuilder.h"
@@ -217,13 +218,13 @@
 1585006990 source:e:\handasa\3\compilers\src\dfabuilder.cpp
 	"DFABuilder.h"
 
-1584987861 source:e:\handasa\3\compilers\src\dfastate.cpp
+1585051924 source:e:\handasa\3\compilers\src\dfastate.cpp
 	"DFAState.h"
 
-1584989605 e:\handasa\3\compilers\include\dfastate.h
+1585051923 e:\handasa\3\compilers\include\dfastate.h
 	"includes.h"
 
-1585003137 source:e:\handasa\3\compilers\src\lexicalanalyzer.cpp
+1585051924 source:e:\handasa\3\compilers\src\lexicalanalyzer.cpp
 	"../include/LexicalAnalyzer.h"
 
 1585049253 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/DFABuilder.h
