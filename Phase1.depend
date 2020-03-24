@@ -20,7 +20,7 @@
 	<sstream>
 	<bits/stdc++.h>
 
-1585056336 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/LexicalAnalyzer.h
+1585080954 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/LexicalAnalyzer.h
 	"includes.h"
 	"NFAState.h"
 	"LexicalAnalyzer.h"
@@ -51,7 +51,7 @@
 1584974940 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/RegularDefinition.h
 	"includes.h"
 
-1585080481 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/LexicalAnalyzer.cpp
+1585082118 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/LexicalAnalyzer.cpp
 	"../include/LexicalAnalyzer.h"
 
 1585080079 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/NFABuilder.cpp
@@ -228,12 +228,12 @@
 1585051924 source:e:\handasa\3\compilers\src\lexicalanalyzer.cpp
 	"../include/LexicalAnalyzer.h"
 
-1585066471 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/DFABuilder.h
+1585082554 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/DFABuilder.h
 	"NFAState.h"
 	"StateMachine.h"
 	"includes.h"
 
-1585077949 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/DFABuilder.cpp
+1585083505 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/DFABuilder.cpp
 	"DFABuilder.h"
 
 1585015370 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/DFAState.cpp
@@ -245,6 +245,6 @@
 1585056359 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/NFASimulator.h
 	"StateMachine.h"
 
-1585078938 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/NFASimulator.cpp
+1585081330 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/NFASimulator.cpp
 	"NFASimulator.h"
 

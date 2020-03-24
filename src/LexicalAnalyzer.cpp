@@ -17,19 +17,13 @@ void LexicalAnalyzer::execute() {
         stateMachines.push_back(NFABuilder::buildNFAFromPostfix(regularExpression.getPostfixExpression(),
                                                                  regularExpression.getExpressionType()));
     }
-    //StateMachine combinedStateMachine = LexicalAnalyzer::combineStateMachines(stateMachines);
-    DFABuilder builder(stateMachines[5]);
-    builder.calculateEpsilonClosure();
-    NFASimulator simulator;
-    cout << simulator.simulate(stateMachines[5], "/");
-}
-
-StateMachine LexicalAnalyzer::combineStateMachines(vector<StateMachine> &stateMachines) {
-    NFAState initialState(0);
-    NFAState finalState(0);
+    NFAState initialState(0), finalState(0);
     for (StateMachine &stateMachine: stateMachines) {
         initialState.addTransition(0, stateMachine.getInitialState());
     }
-    // There are multiple final states in this machine, so set its final state to null.
-    return StateMachine(initialState, finalState);
+    StateMachine &combinedStateMachine = *new StateMachine(initialState, finalState);
+    DFABuilder builder(combinedStateMachine);
+    builder.calculateEpsilonClosure();
+    NFASimulator simulator;
+    cout << simulator.simulate(fsm, "sum");
 }

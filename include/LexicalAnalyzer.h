@@ -21,5 +21,4 @@ public:
 
 private:
     LexicalAnalyzer();
-    static StateMachine combineStateMachines(vector<StateMachine> &stateMachines);
 };

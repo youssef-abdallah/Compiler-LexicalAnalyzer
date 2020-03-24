@@ -8,7 +8,7 @@
 class DFABuilder
 {
     public:
-        DFABuilder(StateMachine &machine): machineNFA(machine){
+        DFABuilder(StateMachine &machine): machineNFA(machine) {
 
         }
         virtual ~DFABuilder();
