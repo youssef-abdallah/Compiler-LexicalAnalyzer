@@ -52,7 +52,7 @@ public:
     void setEpsilonClosure(vector<NFAState> eClosure){
         this->epsilonClosure = eClosure;
     }
-    vector<NFAState> & getEpsilonClosure(){
+    vector<NFAState> getEpsilonClosure(){
         return this->epsilonClosure;
     }
     vector<NFAState> epsilonClosure;
