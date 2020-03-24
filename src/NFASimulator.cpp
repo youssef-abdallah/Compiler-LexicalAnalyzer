@@ -29,5 +29,10 @@ string NFASimulator::simulate(StateMachine &stateMachine, string inputString) {
         }
         currentStates = newStates;
     }
-    return currentStates.begin()->isAcceptState() ? currentStates.begin()->getAcceptStateToken() : "REJECT";
+    for (NFAState currentState : currentStates) {
+        if (currentState.isAcceptState()) {
+            return currentState.getAcceptStateToken();
+        }
+    }
+    return "REJECT";
 }

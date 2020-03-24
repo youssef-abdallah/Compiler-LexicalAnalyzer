@@ -11,7 +11,6 @@ NFABuilder& NFABuilder::getInstance() {
 
 StateMachine& NFABuilder::buildNFAFromPostfix(string postfix, string regularExpression) {
     stack<StateMachine> st;
-    cout << postfix << endl;
     for (int i = 0; i < (int) postfix.length(); i++) {
         if (postfix[i] == '\\') {
             i++;
@@ -73,6 +72,6 @@ StateMachine& NFABuilder::getTheMachineClosure(StateMachine &fsm) {
     initialState.addTransition(0, fsm.getInitialState());
     fsm.getFinalState().setAcceptState(0);
     fsm.getFinalState().addTransition(0, fsm.getInitialState());
-    fsm.getFinalState().addTransition(0, fsm.getFinalState());
+    fsm.getFinalState().addTransition(0, finalState);
     return *new StateMachine(initialState, finalState);
 }

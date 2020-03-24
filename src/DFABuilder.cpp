@@ -12,11 +12,11 @@ void DFABuilder::calculateEpsilonClosure()
     NFAState &state = machineNFA.getInitialState();
     calculateEpsilonClosure(state);
     calculated[state.getStateId()] = 1;
-    stack<NFAState> st;
+    stack<reference_wrapper<NFAState>> st;
     st.push(state);
     while (!st.empty())
     {
-        NFAState s = st.top();
+        NFAState& s = st.top();
         st.pop();
         for (NFAState &currentState : s.getEpsilonTransitions())
         {
@@ -28,7 +28,7 @@ void DFABuilder::calculateEpsilonClosure()
             }
         }
 
-        for ( auto it : s.getTransitions() )
+        for ( auto &it : s.getTransitions() )
         {
             for(NFAState &currentState : it.second)
             {
@@ -47,14 +47,14 @@ void DFABuilder::calculateEpsilonClosure()
 void DFABuilder::calculateEpsilonClosure(NFAState &state)
 {
     //vector<NFAState> stateClosure;
-    stack<NFAState> st;
+    stack<reference_wrapper<NFAState>> st;
     st.push(state);
     state.getEpsilonClosure().push_back(state);
     int added[2000] = {0};
     added[state.getStateId()] = 1;
     while (!st.empty())
     {
-        NFAState currentState = st.top();
+        NFAState &currentState = st.top();
         st.pop();
         for (NFAState & s: currentState.getEpsilonTransitions())
         {

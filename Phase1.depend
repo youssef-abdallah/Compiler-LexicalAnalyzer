@@ -8,7 +8,7 @@
 	<vector>
 	<unordered_map>
 
-1585070313 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/NFAState.h
+1585077541 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/NFAState.h
 	"includes.h"
 
 1584974940 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/includes.h
@@ -30,7 +30,7 @@
 	"DFABuilder.h"
 	"NFASimulator.h"
 
-1584974940 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/RegularExpression.h
+1585076949 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/RegularExpression.h
 	"includes.h"
 
 1585063791 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/NFABuilder.h
@@ -51,10 +51,10 @@
 1584974940 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/RegularDefinition.h
 	"includes.h"
 
-1585063454 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/LexicalAnalyzer.cpp
+1585080481 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/LexicalAnalyzer.cpp
 	"../include/LexicalAnalyzer.h"
 
-1585069464 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/NFABuilder.cpp
+1585080079 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/NFABuilder.cpp
 	"../include/NFABuilder.h"
 
 1585015176 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/NFAState.cpp
@@ -66,7 +66,7 @@
 1585063421 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/RegularExpression.cpp
 	"../include/RegularExpression.h"
 
-1584981803 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/Scanner.cpp
+1585076869 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/Scanner.cpp
 	"../include/Scanner.h"
 
 1585070204 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/StateMachine.cpp
@@ -233,7 +233,7 @@
 	"StateMachine.h"
 	"includes.h"
 
-1585070534 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/DFABuilder.cpp
+1585077949 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/DFABuilder.cpp
 	"DFABuilder.h"
 
 1585015370 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/DFAState.cpp
@@ -245,6 +245,6 @@
 1585056359 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/NFASimulator.h
 	"StateMachine.h"
 
-1585071622 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/NFASimulator.cpp
+1585078938 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/NFASimulator.cpp
 	"NFASimulator.h"
 

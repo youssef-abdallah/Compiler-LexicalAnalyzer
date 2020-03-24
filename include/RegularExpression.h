@@ -25,8 +25,17 @@ public:
         return expression;
     }
 
+    void setExpressionType(string expressionType) {
+        this->expressionType = expressionType;
+    }
+
+    string getExpressionType() {
+        return this->expressionType;
+    }
+
+
 private:
-    std::string expression, postfixExpression;
+    string expression, postfixExpression, expressionType;
     int getPrecedence(char);
     bool isOperator(char);
     void convertInfixToPostfix();

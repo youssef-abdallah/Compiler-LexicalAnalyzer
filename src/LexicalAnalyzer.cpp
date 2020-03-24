@@ -11,17 +11,17 @@ LexicalAnalyzer& LexicalAnalyzer::getInstance() {
 
 void LexicalAnalyzer::execute() {
     Scanner::getInstance().read_lexical_rules("./test/lexical_rules.txt");
-    /*vector<RegularExpression> regularExpressions = Scanner::getInstance().reg_expressions;
+    vector<RegularExpression> regularExpressions = Scanner::getInstance().reg_expressions;
     vector<StateMachine> stateMachines;
     for (RegularExpression regularExpression : regularExpressions) {
         stateMachines.push_back(NFABuilder::buildNFAFromPostfix(regularExpression.getPostfixExpression(),
-                                                                 regularExpression.getExpression()));
+                                                                 regularExpression.getExpressionType()));
     }
-    StateMachine combinedStateMachine = LexicalAnalyzer::combineStateMachines(stateMachines);
-    DFABuilder builder(combinedStateMachine);
+    //StateMachine combinedStateMachine = LexicalAnalyzer::combineStateMachines(stateMachines);
+    DFABuilder builder(stateMachines[5]);
     builder.calculateEpsilonClosure();
-    NFASimulator simulator;*/
-    //cout << simulator.simulate(combinedStateMachine, "sum");
+    NFASimulator simulator;
+    cout << simulator.simulate(stateMachines[5], "/");
 }
 
 StateMachine LexicalAnalyzer::combineStateMachines(vector<StateMachine> &stateMachines) {

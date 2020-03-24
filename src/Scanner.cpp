@@ -178,8 +178,8 @@ void Scanner::regular_exp_scanner(string line) {
 
     RegularExpression re;
     re.setExpression(RHS);
+    re.setExpressionType(expression_type);
     reg_expressions.push_back(re);
-
 
 }
 
