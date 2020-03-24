@@ -69,3 +69,30 @@ void DFABuilder::calculateEpsilonClosure(NFAState &state)
 
     //state.setEpsilonClosure(stateClosure);
 }
+
+void DFABuilder::getInitialState(){
+    NFAState &state = machineNFA.getInitialState();
+    initialState = *new DFAState(0);
+    set<int> initialId;
+    for(NFAState &s : state.getEpsilonClosure()){
+        initialState.addState(s);
+        initialId.insert(s.getStateId());
+    }
+    allStates.push_back(initialState);
+    statesMap.insert({initialState.getStatesId() , initialState});
+    st.push(initialState);
+}
+
+void DFABuilder::computeNewTable(){
+    while(!st.empty()){
+        DFAState& s = st.top();
+        st.pop();
+        for(NFAState &currentNFAState : s.getNFAStates()){
+            for ( auto &it : currentNFAState.getTransitions() ){
+                for(NFAState &state : it.second){
+
+                }
+            }
+        }
+    }
+}
