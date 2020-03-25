@@ -38,10 +38,7 @@ void DFABuilder::calculateEpsilonClosure()
 
         for ( auto &it : s.getTransitions() )
         {
-            if(inputsSet.count(it.first)==0){
-                inputsSet.insert(it.first);
-                inputs.push_back(it.first);
-            }
+            inputsSet.insert(it.first);
             for(NFAState &currentState : it.second)
             {
                 if (!calculated[currentState.getStateId()])
@@ -87,7 +84,7 @@ void DFABuilder::getInitialState(){
         initialId.insert(s.getStateId());
     }
     //allStates.push_back(initialState);
-    statesMap.insert({initialState.getStatesId() , initialState});
+    statesMap.insert({initialState.getStatesId() , statesMap.size()});
     st.push(initialState);
 }
 
@@ -105,14 +102,11 @@ void DFABuilder::getInitialState(){
     }
 }*/
 void DFABuilder::computeNewTable(){
-    for(int i=0;i<127;i++){
-        inputs.push_back((char) i);
-    }
     while(!st.empty()){
         DFAState& rowState = st.top();
         st.pop();
         map<char,set<int>> innerMap;
-        for(char c : inputs){
+        for(char c : inputsSet){
            DFAState transitionState = *new DFAState(0);
             for(NFAState &currentState : rowState.getNFAStates()){
                 for(NFAState &state : currentState.getTransitions()[c]){
@@ -128,11 +122,12 @@ void DFABuilder::computeNewTable(){
             //if yes push the statesId set into the stack to compute the new row
             if(checkIfNewState(transitionState.getStatesId())){
                 st.push(transitionState);
-                statesMap.insert({transitionState.getStatesId() , transitionState});
+                statesMap.insert({transitionState.getStatesId() , statesMap.size()});
                 //check if it contains any accept state and get accept state token
                 checkIfAcceptState(transitionState);
             }
         }
+        rowState.setStateIndex(allStates.size());
         allStates.push_back(rowState);
     }
 }
@@ -152,6 +147,20 @@ void DFABuilder::checkIfAcceptState(DFAState &state){
                 state.setAcceptState(1);
                 state.setAcceptStateToken(s.getAcceptStateToken());
             }
+        }
+    }
+}
+
+void DFABuilder::buildReducedTable() {
+    reducedTable.resize(statesMap.size());
+    for (auto &elem : reducedTable) {
+        elem.resize(128);
+    }
+    cout << transitions.size() << endl;
+    for (auto &dfaTransitions : transitions) {
+        int row = statesMap[dfaTransitions.first];
+        for (auto &mp : dfaTransitions.second) {
+            reducedTable[row][mp.first] = statesMap[mp.second];
         }
     }
 }

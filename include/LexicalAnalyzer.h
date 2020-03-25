@@ -7,6 +7,7 @@
 #include "Scanner.h"
 #include "DFABuilder.h"
 #include "NFASimulator.h"
+#include "DFASimulator.h"
 
 
 

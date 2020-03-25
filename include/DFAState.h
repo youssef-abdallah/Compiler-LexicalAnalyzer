@@ -38,12 +38,21 @@ class DFAState
             return this->statesId;
         }
 
+        void setStateIndex(int index) {
+            this->stateIndex = index;
+        }
+
+        int getStateIndex() {
+            return stateIndex;
+        }
+
     private:
         bool acceptState;
         //int stateId;
         string acceptStateToken;
         vector<reference_wrapper<NFAState>> states;
         set<int> statesId;
+        int stateIndex;
 
 };
 

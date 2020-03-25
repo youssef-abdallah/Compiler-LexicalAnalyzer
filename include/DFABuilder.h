@@ -14,13 +14,16 @@ class DFABuilder
         }
         virtual ~DFABuilder();
         vector<reference_wrapper<DFAState>> buildDFA();
-
+        vector<vector<int>> getReducedTable() {
+            return this->reducedTable;
+        }
+        void buildReducedTable();
 
 
     private:
         vector<reference_wrapper<DFAState>> allStates;
         map<set<int>, map<char,set<int>>> transitions;
-        map<set<int>, DFAState> statesMap;
+        map<set<int>, int> statesMap;
         stack<reference_wrapper<DFAState>> st;
         void calculateEpsilonClosure();
         void calculateEpsilonClosure(NFAState &state);
@@ -28,12 +31,12 @@ class DFABuilder
         void computeNewTable();
         bool checkIfNewState(set<int>);
         void checkIfAcceptState(DFAState &state);
+        vector<vector<int>> reducedTable;
 
         StateMachine &machineNFA;
         DFAState initialState;
-
-        vector<char> inputs;
         set<char> inputsSet;
+
 };
 
 #endif // DFABUILDER_H
