@@ -23,7 +23,7 @@ void LexicalAnalyzer::execute() {
     }
     StateMachine &combinedStateMachine = *new StateMachine(initialState, finalState);
     DFABuilder builder(combinedStateMachine);
-    builder.calculateEpsilonClosure();
+    builder.buildDFA();
     NFASimulator simulator;
     cout << simulator.simulate(combinedStateMachine, "12.2");
 }

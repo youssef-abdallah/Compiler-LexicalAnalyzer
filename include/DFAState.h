@@ -23,11 +23,13 @@ class DFAState
         string getAcceptStateToken(){
             return this->acceptStateToken;
         }
-        void addState(NFAState &state){
+        bool addState(NFAState &state){
             if(statesId.count(state.getStateId())==0){
                 statesId.insert(state.getStateId());
                 states.push_back(state);
+                return 1;
             }
+            return 0;
         }
         vector<reference_wrapper<NFAState>> getNFAStates(){
             return this->states;

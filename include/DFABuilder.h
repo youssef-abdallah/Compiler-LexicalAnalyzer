@@ -13,7 +13,8 @@ class DFABuilder
 
         }
         virtual ~DFABuilder();
-        void calculateEpsilonClosure();
+        vector<reference_wrapper<DFAState>> buildDFA();
+
 
 
     private:
@@ -21,6 +22,7 @@ class DFABuilder
         map<set<int>, map<char,set<int>>> transitions;
         map<set<int>, DFAState> statesMap;
         stack<reference_wrapper<DFAState>> st;
+        void calculateEpsilonClosure();
         void calculateEpsilonClosure(NFAState &state);
         void getInitialState();
         void computeNewTable();

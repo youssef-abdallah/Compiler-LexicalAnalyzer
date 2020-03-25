@@ -6,6 +6,13 @@ DFABuilder::~DFABuilder()
     //dtor
 }
 
+vector<reference_wrapper<DFAState>> DFABuilder::buildDFA(){
+    calculateEpsilonClosure();
+    getInitialState();
+    computeNewTable();
+    return allStates;
+}
+
 void DFABuilder::calculateEpsilonClosure()
 {
     NFAState &state = machineNFA.getInitialState();
@@ -101,18 +108,17 @@ void DFABuilder::computeNewTable(){
         for(char c : inputs){
            DFAState d = *new DFAState(0);
             for(NFAState &currentState : s.getNFAStates()){
-                for(NFAState &state : currentState.getTransitions().find(c)){
+                for(NFAState &state : currentState.getTransitions()[c]){
                     for(NFAState &closureState : state.getEpsilonClosure()){
                         if(d.addState(closureState)){
                             d.addState(closureState);
-                            d.insert(closureState.getStateId());
                         }
                     }
                 }
             }
             //put the new state in the transitions map
             innerMap.insert({c,d.getStatesId()});
-            transitions({s.getStatesId(),innerMap});
+            transitions.insert({s.getStatesId(),innerMap});
             //check if this is a new state or not...
             //if yes push the statesId set into the stack to compute the new row
             if(checkIfNewState(d.getStatesId())){
