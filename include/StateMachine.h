@@ -25,7 +25,6 @@ class StateMachine
         void setFinalState(NFAState &state) {
             this->finalState = state;
         }
-        void concatenate(StateMachine &);
     private:
         NFAState& initialState;
         NFAState& finalState;

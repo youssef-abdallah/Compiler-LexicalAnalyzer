@@ -181,6 +181,7 @@ void Scanner::regular_exp_scanner(string line) {
     re.setExpressionType(expression_type);
     reg_expressions.push_back(re);
 
+
 }
 
 vector<int> Scanner::find_all_occurences(string line, char delim) {
@@ -219,12 +220,7 @@ string Scanner::remove_plus_operator(string line, string defType) {
         string RHS = line;
         int index;
         int pos = 0;
-        while ((index = RHS.find(defType + "+", pos)) != (int) string::npos) {
-            RHS.replace(index, defType.size() + 1, defType + defType + "*");
-            pos = index + 1;
-        }
 
-        pos = 0;
         while ((index = RHS.find(")+", pos)) != (int) string::npos) {
             int start_pos;
             for (int j = index; j >= 0; j--) {
@@ -234,7 +230,13 @@ string Scanner::remove_plus_operator(string line, string defType) {
                 }
             }
             string parentheses = RHS.substr(start_pos, index - start_pos + 1);
-            RHS.replace(start_pos, index - start_pos + 2, parentheses + conc_operator + parentheses + "*");
+            RHS.replace(start_pos, index - start_pos + 2, parentheses + "~" + parentheses + "*");
+            pos = index + 1;
+        }
+
+        pos = 0;
+        while ((index = RHS.find(defType + "+", pos)) != (int) string::npos) {
+            RHS.replace(index, defType.size() + 1, defType + defType + "*");
             pos = index + 1;
         }
 
@@ -250,10 +252,10 @@ string Scanner::replace_definitions(string line, string defType, string replacem
     while ((index = RHS.find(defType, pos)) != (int) string::npos) {
         if (replacement.find(")|") != string::npos){
             has_definitions = true;
-            RHS.replace(index, defType.size(), "(" + replacement + ")" + conc_operator);
+            RHS.replace(index, defType.size(), "(" + replacement + ")" + "~");
         } else {
             has_definitions = true;
-            RHS.replace(index, defType.size(), replacement + conc_operator);
+            RHS.replace(index, defType.size(), replacement + "~");
         }
 
         pos = index + 1;
@@ -288,17 +290,68 @@ string Scanner::additional_manipulations(string line) {
         pos = index + 1;
     }
 
+    string temp = RHS;
+    for (int i = 1; i < temp.size(); i++){
+        if (temp[i] == '('){
+            if (temp[i - 1] != '(' && temp[i - 1] != '|' && temp[i - 1] != '~'){
+                RHS = "";
+                for (int j = 0; j < i; j++){
+                    RHS.push_back(temp[j]);
+                }
+                RHS.push_back('~');
+                for (int j = i; j < temp.size(); j++){
+                    RHS.push_back(temp[j]);
+                }
+                temp = RHS;
+           }
+        }
+    }
+
+    temp = RHS;
+    for (int i = 1; i < temp.size(); i++){
+        if (temp[i] == ')' && i != temp.size() - 1){
+            if (temp[i + 1] != '|' && temp[i + 1] != '*' && temp[i + 1] != '~'  && temp[i + 1] != ')'){
+                RHS = "";
+                for (int j = 0; j <= i; j++){
+                    RHS.push_back(temp[j]);
+                }
+                RHS.push_back('~');
+                for (int j = i + 1; j < temp.size(); j++){
+                    RHS.push_back(temp[j]);
+                }
+                temp = RHS;
+           }
+        }
+    }
+
+
     pos = 0;
-    while ((index = RHS.find(".", pos)) != (int) string::npos) {
+    while ((index = RHS.find("*(", pos)) != (int) string::npos) {
         string L = RHS.substr(0, index);
         string R = RHS.substr(index + 1, RHS.size() - index - 1);
-        RHS = L + "~.~" + R;
-        pos = index + 3;
+        RHS = L + "*~" + R;
+        pos = index + 2;
     }
+
+
+    pos = 0;
+    while ((index = RHS.find("*", pos)) != (int) string::npos) {
+        if (index != RHS.size() - 1){
+            if (RHS[index + 1] != ')' && RHS[index + 1] != '|' && RHS[index + 1] != '~'){
+                string L = RHS.substr(0, index + 1);
+                string R = RHS.substr(index + 1, RHS.size() - index - 1);
+                RHS = L + "~" + R;
+            }
+        }
+        pos = index + 1;
+    }
+
 
     if (RHS[RHS.size() - 1] == conc_operator) {
         RHS.replace(RHS.size() - 1, 1, "");
     }
+    cout << endl << endl << RHS << endl <<endl;
+
 
     return RHS;
 }

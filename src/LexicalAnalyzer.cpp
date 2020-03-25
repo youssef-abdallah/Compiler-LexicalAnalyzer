@@ -23,7 +23,10 @@ void LexicalAnalyzer::execute() {
     }
     StateMachine &combinedStateMachine = *new StateMachine(initialState, finalState);
     DFABuilder builder(combinedStateMachine);
-    builder.calculateEpsilonClosure();
+    vector<reference_wrapper<DFAState>> dfaStates = builder.buildDFA();
+    builder.buildReducedTable();
     NFASimulator simulator;
-    cout << simulator.simulate(combinedStateMachine, "5.2");
+    cout << simulator.simulate(combinedStateMachine, "999hh");
+    DFASimulator dfaSimulator;
+    cout << dfaSimulator.simulate(dfaStates, builder.getReducedTable(), "999hh");
 }

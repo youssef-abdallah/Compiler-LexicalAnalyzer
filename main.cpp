@@ -18,7 +18,7 @@ int main()
     vector<RegularExpression> vre = Scanner::getInstance().reg_expressions;
     cout << vre[2].getExpression() << endl << endl << vre[3].getExpression() << endl << endl << vre[4].getExpression() << endl << endl << vre[5].getExpression() << endl;*/
 
-return 0;
+    return 0;
 
 }
 

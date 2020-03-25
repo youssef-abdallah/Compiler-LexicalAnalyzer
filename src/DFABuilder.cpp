@@ -6,6 +6,14 @@ DFABuilder::~DFABuilder()
     //dtor
 }
 
+vector<reference_wrapper<DFAState>> DFABuilder::buildDFA(){
+    calculateEpsilonClosure();
+    getInitialState();
+    computeNewTable();
+    cout<<allStates.size()<<endl;
+    return allStates;
+}
+
 void DFABuilder::calculateEpsilonClosure()
 {
     NFAState &state = machineNFA.getInitialState();
@@ -30,6 +38,7 @@ void DFABuilder::calculateEpsilonClosure()
 
         for ( auto &it : s.getTransitions() )
         {
+            inputsSet.insert(it.first);
             for(NFAState &currentState : it.second)
             {
                 if (!calculated[currentState.getStateId()])
@@ -41,7 +50,6 @@ void DFABuilder::calculateEpsilonClosure()
             }
         }
     }
-
 }
 
 void DFABuilder::calculateEpsilonClosure(NFAState &state)
@@ -49,23 +57,109 @@ void DFABuilder::calculateEpsilonClosure(NFAState &state)
     //vector<NFAState> stateClosure;
     stack<reference_wrapper<NFAState>> st;
     st.push(state);
-    state.getEpsilonClosure().push_back(state);
-    unordered_map<int, bool> added;
-    added[state.getStateId()] = 1;
+    unordered_set<int> added;
     while (!st.empty())
     {
         NFAState &currentState = st.top();
         st.pop();
-        for (NFAState &s : currentState.getEpsilonTransitions())
+        added.insert(currentState.getStateId());
+        state.getEpsilonClosure().push_back(currentState);
+        for (NFAState &nextState : currentState.getEpsilonTransitions())
         {
-            if (added[s.getStateId()] == 0)
+            //cout << added.count(nextState.getStateId()) << endl;
+            if (!added.count(nextState.getStateId()))
             {
-                st.push(s);
-                state.getEpsilonClosure().push_back(s);
-                added[s.getStateId()] = 1;
+                st.push(nextState);
             }
         }
     }
+}
 
-    //state.setEpsilonClosure(stateClosure);
+void DFABuilder::getInitialState(){
+    NFAState &state = machineNFA.getInitialState();
+    initialState = *new DFAState(0);
+    set<int> initialId;
+    for(NFAState &s : state.getEpsilonClosure()){
+        initialState.addState(s);
+        initialId.insert(s.getStateId());
+    }
+    //allStates.push_back(initialState);
+    statesMap[initialState.getStatesId()] = statesMap.size();
+    st.push(initialState);
+}
+
+/*void DFABuilder::computeNewTable(){
+    while(!st.empty()){
+        DFAState& s = st.top();
+        st.pop();
+        for(NFAState &currentNFAState : s.getNFAStates()){
+            for ( auto &it : currentNFAState.getTransitions() ){
+                for(NFAState &state : it.second){
+
+                }
+            }
+        }
+    }
+}*/
+void DFABuilder::computeNewTable(){
+    while(!st.empty()){
+        DFAState& rowState = st.top();
+        st.pop();
+        map<char,set<int>> innerMap;
+        for(char c : inputsSet){
+           DFAState transitionState = *new DFAState(0);
+            for(NFAState &currentState : rowState.getNFAStates()){
+                for(NFAState &state : currentState.getTransitions()[c]){
+                    for(NFAState &closureState : state.getEpsilonClosure()){
+                            transitionState.addState(closureState);
+                    }
+                }
+            }
+            //put the new state in the transitions map
+            innerMap[c] = transitionState.getStatesId();
+            transitions[rowState.getStatesId()] = innerMap;
+            //check if this is a new state or not...
+            //if yes push the statesId set into the stack to compute the new row
+            if(checkIfNewState(transitionState.getStatesId())){
+                st.push(transitionState);
+                statesMap[transitionState.getStatesId()] = statesMap.size();
+                //check if it contains any accept state and get accept state token
+                checkIfAcceptState(transitionState);
+            }
+        }
+        rowState.setStateIndex(allStates.size());
+        allStates.push_back(rowState);
+    }
+}
+
+bool DFABuilder::checkIfNewState(set<int> newSet){
+    if(transitions.count(newSet)==0){
+        return 1;
+    }
+    return 0;
+}
+
+void DFABuilder::checkIfAcceptState(DFAState &state){
+    int minId=99999;
+    for(NFAState &s : state.getNFAStates()){
+        if(s.isAcceptState()){
+            if(s.getStateId()<minId){
+                state.setAcceptState(1);
+                state.setAcceptStateToken(s.getAcceptStateToken());
+            }
+        }
+    }
+}
+
+void DFABuilder::buildReducedTable() {
+    reducedTable.resize(statesMap.size());
+    for (auto &elem : reducedTable) {
+        elem.resize(128);
+    }
+    for (auto &dfaTransitions : transitions) {
+        int row = statesMap[dfaTransitions.first];
+        for (auto &mp : dfaTransitions.second) {
+            reducedTable[row][mp.first] = statesMap[mp.second];
+        }
+    }
 }
