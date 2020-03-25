@@ -84,7 +84,7 @@ void DFABuilder::getInitialState(){
         initialId.insert(s.getStateId());
     }
     //allStates.push_back(initialState);
-    statesMap.insert({initialState.getStatesId() , statesMap.size()});
+    statesMap[initialState.getStatesId()] = statesMap.size();
     st.push(initialState);
 }
 
@@ -116,13 +116,13 @@ void DFABuilder::computeNewTable(){
                 }
             }
             //put the new state in the transitions map
-            innerMap.insert({c,transitionState.getStatesId()});
-            transitions.insert({rowState.getStatesId(),innerMap});
+            innerMap[c] = transitionState.getStatesId();
+            transitions[rowState.getStatesId()] = innerMap;
             //check if this is a new state or not...
             //if yes push the statesId set into the stack to compute the new row
             if(checkIfNewState(transitionState.getStatesId())){
                 st.push(transitionState);
-                statesMap.insert({transitionState.getStatesId() , statesMap.size()});
+                statesMap[transitionState.getStatesId()] = statesMap.size();
                 //check if it contains any accept state and get accept state token
                 checkIfAcceptState(transitionState);
             }
@@ -156,7 +156,6 @@ void DFABuilder::buildReducedTable() {
     for (auto &elem : reducedTable) {
         elem.resize(128);
     }
-    cout << transitions.size() << endl;
     for (auto &dfaTransitions : transitions) {
         int row = statesMap[dfaTransitions.first];
         for (auto &mp : dfaTransitions.second) {

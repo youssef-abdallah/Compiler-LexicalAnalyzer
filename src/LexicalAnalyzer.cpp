@@ -26,7 +26,7 @@ void LexicalAnalyzer::execute() {
     vector<reference_wrapper<DFAState>> dfaStates = builder.buildDFA();
     builder.buildReducedTable();
     NFASimulator simulator;
-    cout << simulator.simulate(combinedStateMachine, "12.2");
+    cout << simulator.simulate(combinedStateMachine, "999hh");
     DFASimulator dfaSimulator;
-    cout << dfaSimulator.simulate(dfaStates, builder.getReducedTable(), "12.2");
+    cout << dfaSimulator.simulate(dfaStates, builder.getReducedTable(), "999hh");
 }
