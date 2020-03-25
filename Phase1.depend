@@ -38,7 +38,7 @@
 	"NFAState.h"
 	"StateMachine.h"
 
-1585133964 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/StateMachine.h
+1585135212 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/StateMachine.h
 	"includes.h"
 	"NFAState.h"
 
@@ -66,7 +66,7 @@
 1585097527 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/RegularExpression.cpp
 	"../include/RegularExpression.h"
 
-1585097914 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/Scanner.cpp
+1585135077 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/Scanner.cpp
 	"../include/Scanner.h"
 
 1585134527 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/StateMachine.cpp

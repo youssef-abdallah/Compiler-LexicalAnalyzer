@@ -25,9 +25,6 @@ class StateMachine
         void setFinalState(NFAState &state) {
             this->finalState = state;
         }
-        void concatenate(StateMachine &);
-        void unifyTwoMachines(StateMachine &fsm);
-        void getTheMachineClosure();
     private:
         NFAState& initialState;
         NFAState& finalState;
