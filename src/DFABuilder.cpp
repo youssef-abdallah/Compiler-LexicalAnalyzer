@@ -75,12 +75,12 @@ void DFABuilder::getInitialState(){
         initialState.addState(s);
         initialId.insert(s.getStateId());
     }
-    allStates.push_back(initialState);
+    //allStates.push_back(initialState);
     statesMap.insert({initialState.getStatesId() , initialState});
     st.push(initialState);
 }
 
-void DFABuilder::computeNewTable(){
+/*void DFABuilder::computeNewTable(){
     while(!st.empty()){
         DFAState& s = st.top();
         st.pop();
@@ -89,6 +89,57 @@ void DFABuilder::computeNewTable(){
                 for(NFAState &state : it.second){
 
                 }
+            }
+        }
+    }
+}*/
+void DFABuilder::computeNewTable(){
+    while(!st.empty()){
+        DFAState& s = st.top();
+        st.pop();
+        map<char,set<int>> innerMap;
+        for(char c : inputs){
+           DFAState d = *new DFAState(0);
+            for(NFAState &currentState : s.getNFAStates()){
+                for(NFAState &state : currentState.getTransitions().find(c)){
+                    for(NFAState &closureState : state.getEpsilonClosure()){
+                        if(d.addState(closureState)){
+                            d.addState(closureState);
+                            d.insert(closureState.getStateId());
+                        }
+                    }
+                }
+            }
+            //put the new state in the transitions map
+            innerMap.insert({c,d.getStatesId()});
+            transitions({s.getStatesId(),innerMap});
+            //check if this is a new state or not...
+            //if yes push the statesId set into the stack to compute the new row
+            if(checkIfNewState(d.getStatesId())){
+                st.push(d);
+                statesMap.insert({d.getStatesId() , d});
+                //check if it contains any accept state and get accept state token
+                checkIfAcceptState(d);
+            }
+        }
+        allStates.push_back(s);
+    }
+}
+
+bool DFABuilder::checkIfNewState(set<int> newSet){
+    if(transitions.count(newSet)==0){
+        return 1;
+    }
+    return 0;
+}
+
+void DFABuilder::checkIfAcceptState(DFAState &state){
+    int minId=99999;
+    for(NFAState &s : state.getNFAStates()){
+        if(s.isAcceptState()){
+            if(s.getStateId()<minId){
+                state.setAcceptState(1);
+                state.setAcceptStateToken(s.getAcceptStateToken());
             }
         }
     }

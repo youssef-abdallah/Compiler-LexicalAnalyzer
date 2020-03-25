@@ -24,9 +24,13 @@ class DFABuilder
         void calculateEpsilonClosure(NFAState &state);
         void getInitialState();
         void computeNewTable();
+        bool checkIfNewState(set<int>);
+        void checkIfAcceptState(DFAState &state);
 
         StateMachine &machineNFA;
         DFAState initialState;
+
+        vector<char> inputs;
 };
 
 #endif // DFABUILDER_H
