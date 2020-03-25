@@ -74,3 +74,103 @@
 1584908271 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/RegularDefinition.cpp
 	"../include/RegularDefinition.h"
 
+1585059237 source:m:\projects\compiler-lexicalanalyzer\main.cpp
+	"includes.h"
+	"include/NFAState.h"
+	"include/LexicalAnalyzer.h"
+	"include/RegularExpression.h"
+	"include/NFABuilder.h"
+	"include/Scanner.h"
+	"include/Minimize.h"
+
+1584917889 m:\projects\compiler-lexicalanalyzer\includes.h
+	<iostream>
+	<vector>
+	<unordered_map>
+
+1584917889 m:\projects\compiler-lexicalanalyzer\include\nfastate.h
+	"includes.h"
+
+1584917889 m:\projects\compiler-lexicalanalyzer\include\includes.h
+	<iostream>
+	<vector>
+	<unordered_map>
+	<stack>
+	"fstream"
+	"iostream"
+	<sstream>
+
+1584917889 m:\projects\compiler-lexicalanalyzer\include\lexicalanalyzer.h
+	"includes.h"
+
+1584917889 m:\projects\compiler-lexicalanalyzer\include\regularexpression.h
+	"includes.h"
+
+1584917889 m:\projects\compiler-lexicalanalyzer\include\nfabuilder.h
+	"includes.h"
+	"NFAState.h"
+	"StateMachine.h"
+
+1584917889 m:\projects\compiler-lexicalanalyzer\include\statemachine.h
+	"includes.h"
+	"NFAState.h"
+
+1584917889 m:\projects\compiler-lexicalanalyzer\include\scanner.h
+	"includes.h"
+	<map>
+	"RegularDefinition.h"
+	"RegularExpression.h"
+
+1584917889 m:\projects\compiler-lexicalanalyzer\include\regulardefinition.h
+	"includes.h"
+
+1584917889 source:m:\projects\compiler-lexicalanalyzer\src\lexicalanalyzer.cpp
+	"LexicalAnalyzer.h"
+
+1584917889 source:m:\projects\compiler-lexicalanalyzer\src\nfabuilder.cpp
+	"../include/NFABuilder.h"
+
+1584917889 source:m:\projects\compiler-lexicalanalyzer\src\nfastate.cpp
+	"../include/NFAState.h"
+
+1584917889 source:m:\projects\compiler-lexicalanalyzer\src\regulardefinition.cpp
+	"../include/RegularDefinition.h"
+
+1584917889 source:m:\projects\compiler-lexicalanalyzer\src\regularexpression.cpp
+	"../include/RegularExpression.h"
+
+1584917889 source:m:\projects\compiler-lexicalanalyzer\src\scanner.cpp
+	"Scanner.h"
+
+1584917889 source:m:\projects\compiler-lexicalanalyzer\src\statemachine.cpp
+	"../include/StateMachine.h"
+
+1585136295 source:m:\projects\compiler-lexicalanalyzer\src\minimize.cpp
+	<Minimize.h>
+
+1585136932 m:\projects\compiler-lexicalanalyzer\include\minimize.h
+	<includes.h>
+	<Node.h>
+	<ColorNode.h>
+	<algorithm>
+	<DFAState.h>
+
+1585056091 m:\projects\compiler-lexicalanalyzer\include\node.h
+	<string>
+	<sstream>
+
+1584924941 m:\projects\compiler-lexicalanalyzer\include\colornode.h
+
+1584918276 source:m:\projects\compiler-lexicalanalyzer\src\node.cpp
+	"Node.h"
+
+1584918343 source:m:\projects\compiler-lexicalanalyzer\test\colornode.cpp
+	<ColorNode.h>
+
+1585134651 source:m:\projects\compiler-lexicalanalyzer\src\dfastate.cpp
+	"DFAState.h"
+
+1585135324 m:\projects\compiler-lexicalanalyzer\include\dfastate.h
+	"includes.h"
+	"NFAState.h"
+

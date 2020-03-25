@@ -4,6 +4,8 @@
 #include "include/RegularExpression.h"
 #include "include/NFABuilder.h"
 #include "include/Scanner.h"
+#include "include/Minimize.h"
+#include "include/DFAState.h"
 
 int main()
 {
@@ -14,5 +16,35 @@ int main()
     Scanner::getInstance().read_lexical_rules("test/lexical_rules.txt");
     vector<string> k = Scanner::getInstance().keywords;
     cout << k[0];
+
+    /*DFAState A;
+    A.setAcceptState(true);A.setStateId(1);A.setAcceptStateToken("id");
+    DFAState B;
+    B.setAcceptState(false);B.setStateId(2);
+    DFAState C;
+    C.setAcceptState(false);C.setStateId(3);
+    DFAState D;
+    D.setAcceptState(true);D.setStateId(4);D.setAcceptStateToken("digit");
+    DFAState E;
+    E.setAcceptState(true);E.setStateId(5);E.setAcceptStateToken("id");
+    DFAState F;
+    F.setAcceptState(false);F.setStateId(6);
+    DFAState G;
+    G.setAcceptState(true);G.setStateId(7);G.setAcceptStateToken("digit");
+
+    vector<DFAState> states{A, B, C, D, E, F, G};
+    vector<char> Inputs{'0', '1'};
+    unordered_map<int, vector<int>> transitions;
+    transitions[1] = {2, 6};
+    transitions[2] = {1, 4};
+    transitions[3] = {0, 7};
+    transitions[4] = {2, 5};
+    transitions[5] = {6, 6};
+    transitions[6] = {1, 5};
+    transitions[7] = {2, 5};
+    Minimize min(states, Inputs, transitions);
+    */
+
+
     return 0;
 }
