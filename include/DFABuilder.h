@@ -33,6 +33,7 @@ class DFABuilder
         DFAState initialState;
 
         vector<char> inputs;
+        set<char> inputsSet;
 };
 
 #endif // DFABUILDER_H

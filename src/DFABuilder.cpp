@@ -10,6 +10,7 @@ vector<reference_wrapper<DFAState>> DFABuilder::buildDFA(){
     calculateEpsilonClosure();
     getInitialState();
     computeNewTable();
+    cout<<allStates.size()<<endl;
     return allStates;
 }
 
@@ -37,6 +38,10 @@ void DFABuilder::calculateEpsilonClosure()
 
         for ( auto &it : s.getTransitions() )
         {
+            if(inputsSet.count(it.first)==0){
+                inputsSet.insert(it.first);
+                inputs.push_back(it.first);
+            }
             for(NFAState &currentState : it.second)
             {
                 if (!calculated[currentState.getStateId()])
@@ -48,7 +53,6 @@ void DFABuilder::calculateEpsilonClosure()
             }
         }
     }
-
 }
 
 void DFABuilder::calculateEpsilonClosure(NFAState &state)
@@ -101,34 +105,35 @@ void DFABuilder::getInitialState(){
     }
 }*/
 void DFABuilder::computeNewTable(){
+    for(int i=0;i<127;i++){
+        inputs.push_back((char) i);
+    }
     while(!st.empty()){
-        DFAState& s = st.top();
+        DFAState& rowState = st.top();
         st.pop();
         map<char,set<int>> innerMap;
         for(char c : inputs){
-           DFAState d = *new DFAState(0);
-            for(NFAState &currentState : s.getNFAStates()){
+           DFAState transitionState = *new DFAState(0);
+            for(NFAState &currentState : rowState.getNFAStates()){
                 for(NFAState &state : currentState.getTransitions()[c]){
                     for(NFAState &closureState : state.getEpsilonClosure()){
-                        if(d.addState(closureState)){
-                            d.addState(closureState);
-                        }
+                            transitionState.addState(closureState);
                     }
                 }
             }
             //put the new state in the transitions map
-            innerMap.insert({c,d.getStatesId()});
-            transitions.insert({s.getStatesId(),innerMap});
+            innerMap.insert({c,transitionState.getStatesId()});
+            transitions.insert({rowState.getStatesId(),innerMap});
             //check if this is a new state or not...
             //if yes push the statesId set into the stack to compute the new row
-            if(checkIfNewState(d.getStatesId())){
-                st.push(d);
-                statesMap.insert({d.getStatesId() , d});
+            if(checkIfNewState(transitionState.getStatesId())){
+                st.push(transitionState);
+                statesMap.insert({transitionState.getStatesId() , transitionState});
                 //check if it contains any accept state and get accept state token
-                checkIfAcceptState(d);
+                checkIfAcceptState(transitionState);
             }
         }
-        allStates.push_back(s);
+        allStates.push_back(rowState);
     }
 }
 

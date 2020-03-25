@@ -194,7 +194,7 @@
 1584973281 e:\handasa\3\compilers\include\regulardefinition.h
 	"includes.h"
 
-1585143541 e:\handasa\3\compilers\include\dfabuilder.h
+1585155241 e:\handasa\3\compilers\include\dfabuilder.h
 	"NFAState.h"
 	"StateMachine.h"
 	"includes.h"
@@ -218,7 +218,7 @@
 1585138067 source:e:\handasa\3\compilers\src\statemachine.cpp
 	"../include/StateMachine.h"
 
-1585138067 source:e:\handasa\3\compilers\src\dfabuilder.cpp
+1585155505 source:e:\handasa\3\compilers\src\dfabuilder.cpp
 	"DFABuilder.h"
 
 1585051924 source:e:\handasa\3\compilers\src\dfastate.cpp
@@ -228,7 +228,7 @@
 	"includes.h"
 	"NFAState.h"
 
-1585143428 source:e:\handasa\3\compilers\src\lexicalanalyzer.cpp
+1585143780 source:e:\handasa\3\compilers\src\lexicalanalyzer.cpp
 	"../include/LexicalAnalyzer.h"
 
 1585097914 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/DFABuilder.h
