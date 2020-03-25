@@ -25,5 +25,5 @@ void LexicalAnalyzer::execute() {
     DFABuilder builder(combinedStateMachine);
     builder.calculateEpsilonClosure();
     NFASimulator simulator;
-    cout << simulator.simulate(fsm, "sum");
+    cout << simulator.simulate(combinedStateMachine, "12.2");
 }

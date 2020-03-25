@@ -288,6 +288,14 @@ string Scanner::additional_manipulations(string line) {
         pos = index + 1;
     }
 
+    pos = 0;
+    while ((index = RHS.find(".", pos)) != (int) string::npos) {
+        string L = RHS.substr(0, index);
+        string R = RHS.substr(index + 1, RHS.size() - index - 1);
+        RHS = L + "~.~" + R;
+        pos = index + 3;
+    }
+
     if (RHS[RHS.size() - 1] == conc_operator) {
         RHS.replace(RHS.size() - 1, 1, "");
     }
@@ -300,7 +308,9 @@ string Scanner::handle_special_operators(string line) {
     int index;
     int pos = 0;
     while ((index = RHS.find("\\L", pos)) != (int) string::npos) {
-        RHS.replace(index, 2, "" + epsilon);
+        string eps = "";
+        eps.push_back(0);
+        RHS.replace(index, 2, eps);
         pos = index + 1;
     }
 

@@ -49,25 +49,22 @@ void DFABuilder::calculateEpsilonClosure(NFAState &state)
     //vector<NFAState> stateClosure;
     stack<reference_wrapper<NFAState>> st;
     st.push(state);
-    state.getEpsilonClosure().push_back(state);
-    unordered_map<int, bool> added;
-    added[state.getStateId()] = 1;
+    unordered_set<int> added;
     while (!st.empty())
     {
         NFAState &currentState = st.top();
         st.pop();
-        for (NFAState &s : currentState.getEpsilonTransitions())
+        added.insert(currentState.getStateId());
+        state.getEpsilonClosure().push_back(currentState);
+        for (NFAState &nextState : currentState.getEpsilonTransitions())
         {
-            if (added[s.getStateId()] == 0)
+            //cout << added.count(nextState.getStateId()) << endl;
+            if (!added.count(nextState.getStateId()))
             {
-                st.push(s);
-                state.getEpsilonClosure().push_back(s);
-                added[s.getStateId()] = 1;
+                st.push(nextState);
             }
         }
     }
-
-    //state.setEpsilonClosure(stateClosure);
 }
 
 void DFABuilder::getInitialState(){
