@@ -1,20 +1,22 @@
+#ifndef STATEMACHINE_H
+#define STATEMACHINE_H
 #include "includes.h"
 #include "NFAState.h"
+
 
 
 class StateMachine
 {
     public:
         StateMachine();
-        StateMachine(NFAState initialState, NFAState finalState) {
-            this->initialState = initialState;
-            this->finalState = finalState;
+        StateMachine(NFAState &_initialState, NFAState &_finalState):initialState(_initialState), finalState(_finalState) {
+
         }
         virtual ~StateMachine();
-        NFAState getInitialState() {
+        NFAState& getInitialState() {
             return this->initialState;
         }
-        NFAState getFinalState() {
+        NFAState& getFinalState() {
             return this->finalState;
         }
         void setInitialState(NFAState &state) {
@@ -24,7 +26,8 @@ class StateMachine
             this->finalState = state;
         }
     private:
-        NFAState initialState;
-        NFAState finalState;
+        NFAState& initialState;
+        NFAState& finalState;
 };
 
+#endif

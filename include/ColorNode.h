@@ -7,7 +7,8 @@ private:
 	int PreviousColor;
 	int CurrentColor;
 public:
-
+    ColorNode();
+    ~ColorNode();
 	ColorNode(int PreviousColor, int CurrentColor) {
 		this->PreviousColor = PreviousColor;
 		this->CurrentColor = CurrentColor;

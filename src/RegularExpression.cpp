@@ -16,7 +16,11 @@ RegularExpression::~RegularExpression() {
 void RegularExpression::convertInfixToPostfix() {
     stack<char> st;
     for (int i = 0; i < (int) expression.length(); i++) {
-        if (expression[i] == '(') {
+        if (expression[i] == '\\') {
+            postfixExpression += expression[i++];
+            postfixExpression += expression[i];
+        }
+        else if (expression[i] == '(') {
             st.push('(');
         } else if (expression[i] == ')') {
             while (!st.empty() && st.top() != '(') {
@@ -41,7 +45,7 @@ void RegularExpression::convertInfixToPostfix() {
 }
 
 int RegularExpression::getPrecedence(char op) {
-    if (op == '*' || op == '+') {
+    if (op == '*') {
         return 3;
     }
     if (op == '~') {

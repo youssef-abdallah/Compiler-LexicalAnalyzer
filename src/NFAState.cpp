@@ -1,9 +1,8 @@
 #include "../include/NFAState.h"
 
-NFAState::NFAState() {
-
-}
 
 NFAState::~NFAState() {
 
 }
+
+int NFAState::stateCounter;

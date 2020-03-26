@@ -1,4 +1,4 @@
-#include "../include/ColorNode.h"
+#include "ColorNode.h"
 
 ColorNode::ColorNode(){
 
