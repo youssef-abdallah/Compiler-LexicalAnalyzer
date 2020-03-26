@@ -19,7 +19,8 @@ class DFABuilder
         }
 
     private:
-        set<DFAState> marked;
+        map<set<int>, vector<reference_wrapper<DFAState>>> stateMapping;
+        set<set<int>> marked;
         void calculateEpsilonClosure();
         void calculateEpsilonClosure(NFAState &state);
         void initialize();

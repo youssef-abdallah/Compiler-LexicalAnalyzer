@@ -26,10 +26,10 @@ class DFAState
         void addState(NFAState &state) {
             if (!statesId.count(state.getStateId())) {
                 statesId.insert(state.getStateId());
-                states.push_back(state);
+                this->getNFAStates().push_back(state);
             }
         }
-        vector<reference_wrapper<NFAState>> getNFAStates(){
+        vector<reference_wrapper<NFAState>> &getNFAStates(){
             return this->states;
         }
         set<int> getStatesId(){

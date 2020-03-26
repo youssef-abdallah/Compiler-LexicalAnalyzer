@@ -11,9 +11,10 @@ DFASimulator::~DFASimulator()
 }
 
 string DFASimulator::simulate(DFAState& state, string inputString) {
+    DFAState& currentState = state;
     for (char &symbol : inputString) {
         if (state.getTransitions()[symbol].size()) {
-              state = state.getTransitions()[symbol][0];
+              currentState = state.getTransitions()[symbol][0];
         } else {
             return "REJECT";
         }

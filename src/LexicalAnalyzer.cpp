@@ -25,8 +25,7 @@ void LexicalAnalyzer::execute() {
     DFABuilder builder(combinedStateMachine);
     builder.buildDFA();
     NFASimulator simulator;
-    cout << simulator.simulate(combinedStateMachine, "9");
-    builder.buildDFA();
+    cout << simulator.simulate(combinedStateMachine, "123");
     DFASimulator dfaSimulator;
-    cout << dfaSimulator.simulate(builder.getInitialState(), "99");
+    cout << dfaSimulator.simulate(builder.getInitialState(), "123");
 }
