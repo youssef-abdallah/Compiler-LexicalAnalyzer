@@ -8,13 +8,14 @@ class DFAState
     public:
         DFAState();
         DFAState(bool accept){
+            this->stateId = stateCounter++;
             this->acceptState=accept;
         }
         virtual ~DFAState();
         void setAcceptState(bool acceptState){
-            this->acceptState=acceptState;
+            this->acceptState = acceptState;
         }
-        bool isAcceptState(){
+        bool isAcceptState() {
             return this->acceptState;
         }
         void setAcceptStateToken(string token){
@@ -36,12 +37,8 @@ class DFAState
             return this->statesId;
         }
 
-        void setStateIndex(int index) {
-            this->stateIndex = index;
-        }
-
-        int getStateIndex() const {
-            return stateIndex;
+        int getStateId() const {
+            return stateId;
         }
 
         unordered_map<char, vector<reference_wrapper<DFAState>>> &getTransitions() {
@@ -53,7 +50,7 @@ class DFAState
         }
 
         bool operator < (DFAState const &obj) const {
-            return this->stateIndex < obj.getStateIndex();
+            return this->stateId < obj.getStateId();
         }
 
     private:
@@ -63,7 +60,8 @@ class DFAState
         vector<reference_wrapper<NFAState>> states;
         unordered_map<char, vector<reference_wrapper<DFAState>>> transitions;
         set<int> statesId;
-        int stateIndex;
+        int stateId;
+        static int stateCounter;
 
 };
 

@@ -2,10 +2,12 @@
 
 DFAState::DFAState()
 {
-    //ctor
+    this->stateId = stateCounter++;
 }
 
 DFAState::~DFAState()
 {
     //dtor
 }
+
+int DFAState::stateCounter;

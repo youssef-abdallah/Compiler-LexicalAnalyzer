@@ -52,7 +52,7 @@
 1584974940 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/RegularDefinition.h
 	"includes.h"
 
-1585222191 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/LexicalAnalyzer.cpp
+1585224493 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/LexicalAnalyzer.cpp
 	"../include/LexicalAnalyzer.h"
 
 1585188061 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/NFABuilder.cpp
@@ -232,7 +232,7 @@
 1585143780 source:e:\handasa\3\compilers\src\lexicalanalyzer.cpp
 	"../include/LexicalAnalyzer.h"
 
-1585224301 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/DFABuilder.h
+1585228526 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/DFABuilder.h
 	"NFAState.h"
 	"StateMachine.h"
 	"includes.h"
@@ -241,10 +241,10 @@
 1585224352 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/DFABuilder.cpp
 	"DFABuilder.h"
 
-1585097527 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/DFAState.cpp
+1585228379 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/DFAState.cpp
 	"DFAState.h"
 
-1585223695 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/DFAState.h
+1585229166 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/DFAState.h
 	"includes.h"
 	"NFAState.h"
 

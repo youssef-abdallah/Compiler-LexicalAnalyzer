@@ -18,6 +18,10 @@ class DFABuilder
             return initialState;
         }
 
+        unordered_map<int, vector<int>> getReducedTable() {
+            return this->reducedTable;
+        }
+
     private:
         map<set<int>, vector<reference_wrapper<DFAState>>> stateMapping;
         set<set<int>> marked;
@@ -30,6 +34,7 @@ class DFABuilder
         DFAState initialState;
         set<char> inputsSet;
         DFAState& mov(DFAState &T, char symbol);
+        unordered_map<int, vector<int>> reducedTable;
 
 };
 

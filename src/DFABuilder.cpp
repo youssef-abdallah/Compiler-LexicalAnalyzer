@@ -92,12 +92,12 @@ void DFABuilder::computeNewTable() {
             continue;
         }
         marked.insert(T.getStatesId());
-        for (char a : inputsSet) {
-            DFAState& U = mov(T, a);
-            T.addTransition(a, U);
-            //cout << U.getNFAStates()[1].get().getTransitions()['b'].size() << endl;
+        for (set<char>::iterator c = inputsSet.begin(); c != inputsSet.end(); c++) {
+            DFAState& U = mov(T, *c);
+            T.addTransition(*c, U);
+            reducedTable[T.getStateId()].resize(inputsSet.size(), -1);
+            reducedTable[T.getStateId()][distance(inputsSet.begin(), c)] = U.getStateId();
             if (marked.count(U.getStatesId()) == 0) {
-                    //cout << "here" << endl;
                     Dstates.push_back(U);
             }
         }
@@ -106,7 +106,7 @@ void DFABuilder::computeNewTable() {
 
 
 void DFABuilder::checkIfAcceptState(DFAState &state){
-    int minId = 99999;
+    int minId = INT_MAX;
     for(NFAState &s : state.getNFAStates()){
         if(s.isAcceptState()){
             if(s.getStateId()<minId){
