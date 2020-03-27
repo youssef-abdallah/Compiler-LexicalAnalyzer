@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1585188061 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/main.cpp
+1585325668 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/main.cpp
 	"includes.h"
 	"LexicalAnalyzer.h"
 
@@ -20,7 +20,7 @@
 	<sstream>
 	<bits/stdc++.h>
 
-1585188061 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/LexicalAnalyzer.h
+1585325539 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/LexicalAnalyzer.h
 	"includes.h"
 	"NFAState.h"
 	"LexicalAnalyzer.h"
@@ -30,6 +30,8 @@
 	"DFABuilder.h"
 	"NFASimulator.h"
 	"DFASimulator.h"
+	"Minimize.h"
+	"MinimizeDFASimulation.h"
 
 1585097527 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/RegularExpression.h
 	"includes.h"
@@ -52,7 +54,7 @@
 1584974940 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/RegularDefinition.h
 	"includes.h"
 
-1585224493 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/LexicalAnalyzer.cpp
+1585326004 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/LexicalAnalyzer.cpp
 	"../include/LexicalAnalyzer.h"
 
 1585188061 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/NFABuilder.cpp
@@ -232,13 +234,13 @@
 1585143780 source:e:\handasa\3\compilers\src\lexicalanalyzer.cpp
 	"../include/LexicalAnalyzer.h"
 
-1585228526 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/DFABuilder.h
+1585325726 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/DFABuilder.h
 	"NFAState.h"
 	"StateMachine.h"
 	"includes.h"
 	"DFAState.h"
 
-1585224352 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/DFABuilder.cpp
+1585326601 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/DFABuilder.cpp
 	"DFABuilder.h"
 
 1585228379 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/DFAState.cpp
@@ -266,4 +268,179 @@
 1585215368 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/DFASimulator.h
 	"includes.h"
 	"DFAState.h"
+
+1585260540 source:m:\projects\compiler-lexicalanalyzer\main.cpp
+	"includes.h"
+	"include/NFAState.h"
+	"include/LexicalAnalyzer.h"
+	"include/RegularExpression.h"
+	"include/NFABuilder.h"
+	"include/Scanner.h"
+	"include/Minimize.h"
+	"include/DFAState.h"
+
+1584917889 m:\projects\compiler-lexicalanalyzer\includes.h
+	<iostream>
+	<vector>
+	<unordered_map>
+
+1585229497 m:\projects\compiler-lexicalanalyzer\include\nfastate.h
+	"includes.h"
+
+1585229497 m:\projects\compiler-lexicalanalyzer\include\includes.h
+	<iostream>
+	<vector>
+	<unordered_map>
+	<stack>
+	<fstream>
+	<sstream>
+	<bits/stdc++.h>
+
+1585229497 m:\projects\compiler-lexicalanalyzer\include\lexicalanalyzer.h
+	"includes.h"
+	"NFAState.h"
+	"LexicalAnalyzer.h"
+	"RegularExpression.h"
+	"NFABuilder.h"
+	"Scanner.h"
+	"DFABuilder.h"
+	"NFASimulator.h"
+	"DFASimulator.h"
+
+1585229497 m:\projects\compiler-lexicalanalyzer\include\regularexpression.h
+	"includes.h"
+
+1585229497 m:\projects\compiler-lexicalanalyzer\include\nfabuilder.h
+	"includes.h"
+	"NFAState.h"
+	"StateMachine.h"
+
+1585229497 m:\projects\compiler-lexicalanalyzer\include\statemachine.h
+	"includes.h"
+	"NFAState.h"
+
+1585229497 m:\projects\compiler-lexicalanalyzer\include\scanner.h
+	"includes.h"
+	<map>
+	"RegularDefinition.h"
+	"RegularExpression.h"
+
+1585229497 m:\projects\compiler-lexicalanalyzer\include\regulardefinition.h
+	"includes.h"
+
+1585323886 source:m:\projects\compiler-lexicalanalyzer\src\lexicalanalyzer.cpp
+	"../include/LexicalAnalyzer.h"
+	"Minimize.h"
+	"MinimizeDFASimulation.h"
+
+1585229497 source:m:\projects\compiler-lexicalanalyzer\src\nfabuilder.cpp
+	"../include/NFABuilder.h"
+
+1585229497 source:m:\projects\compiler-lexicalanalyzer\src\nfastate.cpp
+	"../include/NFAState.h"
+
+1585229497 source:m:\projects\compiler-lexicalanalyzer\src\regulardefinition.cpp
+	"../include/RegularDefinition.h"
+
+1585229497 source:m:\projects\compiler-lexicalanalyzer\src\regularexpression.cpp
+	"../include/RegularExpression.h"
+
+1585229497 source:m:\projects\compiler-lexicalanalyzer\src\scanner.cpp
+	"../include/Scanner.h"
+
+1585229497 source:m:\projects\compiler-lexicalanalyzer\src\statemachine.cpp
+	"../include/StateMachine.h"
+
+1585323267 source:m:\projects\compiler-lexicalanalyzer\src\minimize.cpp
+	<Minimize.h>
+
+1585323038 m:\projects\compiler-lexicalanalyzer\include\minimize.h
+	<includes.h>
+	<Node.h>
+	<ColorNode.h>
+	<algorithm>
+	<DFAState.h>
+
+1585056091 m:\projects\compiler-lexicalanalyzer\include\node.h
+	<string>
+	<sstream>
+
+1585245694 m:\projects\compiler-lexicalanalyzer\include\colornode.h
+
+1584918276 source:m:\projects\compiler-lexicalanalyzer\src\node.cpp
+	"Node.h"
+
+1584918343 source:m:\projects\compiler-lexicalanalyzer\test\colornode.cpp
+	<ColorNode.h>
+
+1585229497 source:m:\projects\compiler-lexicalanalyzer\src\dfastate.cpp
+	"DFAState.h"
+
+1585229497 m:\projects\compiler-lexicalanalyzer\include\dfastate.h
+	"includes.h"
+	"NFAState.h"
+
+1584917889 source:m:\projects\compiler-lexicalanalyzer\src\dummy.cpp
+	"dummy.h"
+
+1585229497 m:\projects\compiler-lexicalanalyzer\include\dummy.h
+
+1585317054 m:\projects\compiler-lexicalanalyzer\include\dfabuilder.h
+	"NFAState.h"
+	"StateMachine.h"
+	"includes.h"
+	"DFAState.h"
+
+1585229497 m:\projects\compiler-lexicalanalyzer\include\nfasimulator.h
+	"StateMachine.h"
+
+1585229497 m:\projects\compiler-lexicalanalyzer\include\dfasimulator.h
+	"includes.h"
+	"DFAState.h"
+
+1585245649 source:m:\projects\compiler-lexicalanalyzer\src\colornode.cpp
+	"ColorNode.h"
+
+1585317196 source:m:\projects\compiler-lexicalanalyzer\src\dfabuilder.cpp
+	"DFABuilder.h"
+
+1585229497 source:m:\projects\compiler-lexicalanalyzer\src\dfasimulator.cpp
+	"DFASimulator.h"
+
+1585229497 source:m:\projects\compiler-lexicalanalyzer\src\nfasimulator.cpp
+	"NFASimulator.h"
+
+1585323811 source:m:\projects\compiler-lexicalanalyzer\src\minimizedfasimulation.cpp
+	<MinimizeDFASimulation.h>
+
+1585322610 m:\projects\compiler-lexicalanalyzer\include\minimizedfasimulation.h
+	<Minimize.h>
+
+1585325322 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/Minimize.h
+	<includes.h>
+	<Node.h>
+	<ColorNode.h>
+	<algorithm>
+	<DFAState.h>
+
+1585325322 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/Node.h
+	<string>
+	<sstream>
+
+1585325322 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/ColorNode.h
+
+1585325322 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/MinimizeDFASimulation.h
+	<Minimize.h>
+
+1585325322 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/ColorNode.cpp
+	"ColorNode.h"
+
+1585325322 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/Minimize.cpp
+	<Minimize.h>
+
+1585325322 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/MinimizeDFASimulation.cpp
+	<MinimizeDFASimulation.h>
+
+1585325322 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/Node.cpp
+	"Node.h"
 

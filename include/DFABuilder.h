@@ -18,12 +18,20 @@ class DFABuilder
             return initialState;
         }
 
+        vector<DFAState> GetAllState(){
+            return vector<DFAState>(this->AllState.begin(), this->AllState.end());
+        }
         unordered_map<int, vector<int>> getReducedTable() {
             return this->reducedTable;
         }
 
+        vector<char> GetInputs(){
+            return {inputsSet.begin(), inputsSet.end()};
+        }
+
     private:
         map<set<int>, vector<reference_wrapper<DFAState>>> stateMapping;
+        vector<reference_wrapper<DFAState>> AllState;
         set<set<int>> marked;
         void calculateEpsilonClosure();
         void calculateEpsilonClosure(NFAState &state);

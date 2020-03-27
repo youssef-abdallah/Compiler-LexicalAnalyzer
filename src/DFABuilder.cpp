@@ -89,6 +89,8 @@ void DFABuilder::computeNewTable() {
     for (int i = 0; i < (int) Dstates.size(); i++) {
         DFAState &T = Dstates[i];
         if (marked.count(T.getStatesId())) {
+            Dstates.erase(Dstates.begin() + i);
+            i--;
             continue;
         }
         marked.insert(T.getStatesId());
@@ -102,6 +104,7 @@ void DFABuilder::computeNewTable() {
             }
         }
     }
+    AllState = Dstates;
 }
 
 

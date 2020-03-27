@@ -292,7 +292,7 @@ string Scanner::additional_manipulations(string line) {
 
 
     string temp = RHS;
-    for (int i = 1; i < temp.size(); i++){
+    for (int i = 1; i < (int) temp.size(); i++){
         if (temp[i] == '('){
             if (temp[i - 1] != '(' && temp[i - 1] != '|' && temp[i - 1] != '~'){
                 RHS = "";
@@ -300,7 +300,7 @@ string Scanner::additional_manipulations(string line) {
                     RHS.push_back(temp[j]);
                 }
                 RHS.push_back('~');
-                for (int j = i; j < temp.size(); j++){
+                for (int j = i; j < (int) temp.size(); j++){
                     RHS.push_back(temp[j]);
                 }
                 temp = RHS;
@@ -309,15 +309,15 @@ string Scanner::additional_manipulations(string line) {
     }
 
     temp = RHS;
-    for (int i = 1; i < temp.size(); i++){
-        if (temp[i] == ')' && i != temp.size() - 1){
+    for (int i = 1; i < (int) temp.size(); i++){
+        if (temp[i] == ')' && i != (int) temp.size() - 1){
             if (temp[i + 1] != '|' && temp[i + 1] != '*' && temp[i + 1] != '~'  && temp[i + 1] != ')'){
                 RHS = "";
                 for (int j = 0; j <= i; j++){
                     RHS.push_back(temp[j]);
                 }
                 RHS.push_back('~');
-                for (int j = i + 1; j < temp.size(); j++){
+                for (int j = i + 1; j < (int) temp.size(); j++){
                     RHS.push_back(temp[j]);
                 }
                 temp = RHS;
@@ -337,7 +337,7 @@ string Scanner::additional_manipulations(string line) {
 
     pos = 0;
     while ((index = RHS.find("*", pos)) != (int) string::npos) {
-        if (index != RHS.size() - 1){
+        if (index != (int) RHS.size() - 1){
             if (RHS[index + 1] != ')' && RHS[index + 1] != '|' && RHS[index + 1] != '~'){
                 string L = RHS.substr(0, index + 1);
                 string R = RHS.substr(index + 1, RHS.size() - index - 1);
@@ -351,7 +351,6 @@ string Scanner::additional_manipulations(string line) {
     if (RHS[RHS.size() - 1] == conc_operator) {
         RHS.replace(RHS.size() - 1, 1, "");
     }
-    cout << endl << endl << RHS << endl <<endl;
 
 
     return RHS;
