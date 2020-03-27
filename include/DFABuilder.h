@@ -13,29 +13,36 @@ class DFABuilder
 
         }
         virtual ~DFABuilder();
-        vector<reference_wrapper<DFAState>> buildDFA();
-        vector<vector<int>> getReducedTable() {
+        void buildDFA();
+        DFAState& getInitialState() {
+            return initialState;
+        }
+
+        vector<DFAState> GetAllState(){
+            return vector<DFAState>(this->AllState.begin(), this->AllState.end());
+        }
+        unordered_map<int, vector<int>> getReducedTable() {
             return this->reducedTable;
         }
-        void buildReducedTable();
 
+        vector<char> GetInputs(){
+            return {inputsSet.begin(), inputsSet.end()};
+        }
 
     private:
-        vector<reference_wrapper<DFAState>> allStates;
-        map<set<int>, map<char,set<int>>> transitions;
-        map<set<int>, int> statesMap;
-        stack<reference_wrapper<DFAState>> st;
+        map<set<int>, vector<reference_wrapper<DFAState>>> stateMapping;
+        vector<reference_wrapper<DFAState>> AllState;
+        set<set<int>> marked;
         void calculateEpsilonClosure();
         void calculateEpsilonClosure(NFAState &state);
-        void getInitialState();
+        void initialize();
         void computeNewTable();
-        bool checkIfNewState(set<int>);
         void checkIfAcceptState(DFAState &state);
-        vector<vector<int>> reducedTable;
-
         StateMachine &machineNFA;
         DFAState initialState;
         set<char> inputsSet;
+        DFAState& mov(DFAState &T, char symbol);
+        unordered_map<int, vector<int>> reducedTable;
 
 };
 

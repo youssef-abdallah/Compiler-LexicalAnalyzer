@@ -23,10 +23,24 @@ void LexicalAnalyzer::execute() {
     }
     StateMachine &combinedStateMachine = *new StateMachine(initialState, finalState);
     DFABuilder builder(combinedStateMachine);
-    vector<reference_wrapper<DFAState>> dfaStates = builder.buildDFA();
-    builder.buildReducedTable();
+    builder.buildDFA();
+    Minimize minimize(builder.getInitialState(),builder.GetAllState(),builder.GetInputs(),builder.getReducedTable());
     NFASimulator simulator;
-    cout << simulator.simulate(combinedStateMachine, "999hh");
+    cout << simulator.simulate(combinedStateMachine, "123") << '\n';
     DFASimulator dfaSimulator;
-    cout << dfaSimulator.simulate(dfaStates, builder.getReducedTable(), "999hh");
+    cout << dfaSimulator.simulate(builder.getInitialState(), "123") << '\n';
+    MinimizeDFASimulation minsimulator(minimize);
+    cout << minsimulator.GEtTokenForInput("123") << '\n';
+    minsimulator.Reset();
+    cout << minsimulator.GEtTokenForInput("F5nj7") << '\n';
+    minsimulator.Reset();
+    cout << minsimulator.GEtTokenForInput("==") << '\n';
+    minsimulator.Reset();
+    cout << minsimulator.GEtTokenForInput("+") << '\n';
+    minsimulator.Reset();
+    cout << minsimulator.GEtTokenForInput("*") << '\n';
+    minsimulator.Reset();
+    cout << minsimulator.GEtTokenForInput("$") << '\n';
+    minsimulator.Reset();
+    cout << minsimulator.GEtTokenForInput("=") << '\n';
 }

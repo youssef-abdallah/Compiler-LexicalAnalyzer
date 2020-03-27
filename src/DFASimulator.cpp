@@ -10,13 +10,17 @@ DFASimulator::~DFASimulator()
     //dtor
 }
 
-string DFASimulator::simulate(vector<reference_wrapper<DFAState>> states, vector<vector<int>> table, string inputString) {
-    int currentState = 0;
-    for (char& symbol : inputString) {
-        currentState = table[currentState][symbol];
+string DFASimulator::simulate(DFAState& state, string inputString) {
+    DFAState& currentState = state;
+    for (char &symbol : inputString) {
+        if (state.getTransitions()[symbol].size()) {
+              currentState = state.getTransitions()[symbol][0];
+        } else {
+            return "REJECT";
+        }
     }
-    if (states[currentState].get().isAcceptState()) {
-        return "ACCEPT";
+    if (state.isAcceptState()) {
+        return state.getAcceptStateToken();
     }
     return "REJECT";
 }

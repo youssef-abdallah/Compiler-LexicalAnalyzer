@@ -8,6 +8,8 @@
 #include "DFABuilder.h"
 #include "NFASimulator.h"
 #include "DFASimulator.h"
+#include "Minimize.h"
+#include "MinimizeDFASimulation.h"
 
 
 

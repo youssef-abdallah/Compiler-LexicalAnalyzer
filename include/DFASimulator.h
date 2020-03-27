@@ -9,7 +9,7 @@ class DFASimulator
     public:
         DFASimulator();
         virtual ~DFASimulator();
-        string simulate(vector<reference_wrapper<DFAState>>, vector<vector<int>>, string);
+        string simulate(DFAState& state, string inputString);
 
     protected:
 

@@ -8,13 +8,14 @@ class DFAState
     public:
         DFAState();
         DFAState(bool accept){
+            this->stateId = stateCounter++;
             this->acceptState=accept;
         }
         virtual ~DFAState();
         void setAcceptState(bool acceptState){
-            this->acceptState=acceptState;
+            this->acceptState = acceptState;
         }
-        bool isAcceptState(){
+        bool isAcceptState() {
             return this->acceptState;
         }
         void setAcceptStateToken(string token){
@@ -23,27 +24,33 @@ class DFAState
         string getAcceptStateToken(){
             return this->acceptStateToken;
         }
-        bool addState(NFAState &state){
-            if(statesId.count(state.getStateId())==0){
+        void addState(NFAState &state) {
+            if (!statesId.count(state.getStateId())) {
                 statesId.insert(state.getStateId());
-                states.push_back(state);
-                return 1;
+                this->getNFAStates().push_back(state);
             }
-            return 0;
         }
-        vector<reference_wrapper<NFAState>> getNFAStates(){
+        vector<reference_wrapper<NFAState>> &getNFAStates(){
             return this->states;
         }
         set<int> getStatesId(){
             return this->statesId;
         }
 
-        void setStateIndex(int index) {
-            this->stateIndex = index;
+        int getStateId() const {
+            return stateId;
         }
 
-        int getStateIndex() {
-            return stateIndex;
+        unordered_map<char, vector<reference_wrapper<DFAState>>> &getTransitions() {
+            return this->transitions;
+        }
+
+        void addTransition(char symbol, DFAState &state) {
+            this->getTransitions()[symbol].push_back(state);
+        }
+
+        bool operator < (DFAState const &obj) const {
+            return this->stateId < obj.getStateId();
         }
 
     private:
@@ -51,8 +58,10 @@ class DFAState
         //int stateId;
         string acceptStateToken;
         vector<reference_wrapper<NFAState>> states;
+        unordered_map<char, vector<reference_wrapper<DFAState>>> transitions;
         set<int> statesId;
-        int stateIndex;
+        int stateId;
+        static int stateCounter;
 
 };
 
