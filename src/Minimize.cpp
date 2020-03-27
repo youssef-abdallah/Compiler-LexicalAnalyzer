@@ -1,11 +1,13 @@
 #include<Minimize.h>
 
-Minimize::Minimize(vector<DFAState> States, vector<char> Inputs, unordered_map<int, vector<int>> Transitions)
+Minimize::Minimize(DFAState initialState, vector<DFAState> States, vector<char> Inputs, unordered_map<int, vector<int>> Transitions)
 {
+    this->InitialID = initialState.getStateId();
 	this->States = States;
 	this->Inputs = Inputs;
 	this->Transitions = Transitions;
 	this->Stop = false;
+	ExtractTokens();
 	Separate();
 
 	while (!Stop) {
@@ -15,46 +17,6 @@ Minimize::Minimize(vector<DFAState> States, vector<char> Inputs, unordered_map<i
 	}
 
     RemoveDeadState();
-
-	for (int i = 0; i < Nodes.size(); i++){
-        cout << ((Node)Nodes[i]).GetStateName() << " " << ((Node)Nodes[i]).GetColor() << '\n';
-	}
-	/*vector<int> ele = (TransitionsMinimize.find(1))->second;
-	cout << 'X' << " ->";
-	for (int i = 0; i < ele.size(); i++){
-        cout << " " << ele[i];
-	}
-	cout << '\n';
-    ele = (TransitionsMinimize.find(2))->second;
-	cout << 'Y' << " ->";
-	for (int i = 0; i < ele.size(); i++){
-        cout << " " << ele[i];
-	}
-	cout << '\n';
-	ele = (TransitionsMinimize.find(3))->second;
-	cout << 'Z' << " ->";
-	for (int i = 0; i < ele.size(); i++){
-        cout << " " << ele[i];
-	}
-	cout << '\n';
-	ele = (TransitionsMinimize.find(4))->second;
-	cout << 'U' << " ->";
-	for (int i = 0; i < ele.size(); i++){
-        cout << " " << ele[i];
-	}
-	cout << '\n';
-	ele = (TransitionsMinimize.find(6))->second;
-	cout << 'W' << " ->";
-	for (int i = 0; i < ele.size(); i++){
-        cout << " " << ele[i];
-	}
-	cout << '\n';
-	ele = (TransitionsMinimize.find(7))->second;
-	cout << 'M' << " ->";
-	for (int i = 0; i < ele.size(); i++){
-        cout << " " << ele[i];
-	}
-	cout << '\n';*/
 }
 
 
@@ -80,26 +42,7 @@ void Minimize::Separate()
 			StateColor.emplace(States[i].getStateId(), 0);
         }
     }
-    StateColor.emplace(0, 0);
-	/*bool CheckSome = false;
-	for (int i = 0; i < States.size(); i++) {
-		for (int j = 0; j < AcceptStates.size(); j++) {
-			if (States[i] == AcceptStates[j]) {
-				CheckSome = true;
-				break;
-			}
-		}
-		if (!CheckSome) {
-			Nodes.push_back(Node(States[i], 0));
-			StateColor.emplace(States[i], 0);
-		}
-		CheckSome = false;
-	}
-	for (int i = 0; i < AcceptStates.size(); i++) {
-		Nodes.push_back(Node(AcceptStates[i], 1));
-		StateColor.emplace(AcceptStates[i], 1);
-	}
-	*/
+    StateColor.emplace(-1, 0);
 }
 
 void Minimize::Difference()
@@ -111,7 +54,7 @@ void Minimize::Difference()
 		}
 	}
 	StateColor.clear();
-	StateColor.emplace(0, 0);
+	StateColor.emplace(-1, 0);
 }
 
 void Minimize::UpdateColor()
@@ -181,6 +124,34 @@ void Minimize::RemoveDeadState()
             TransitionsMinimize.emplace(Nodes[i].GetStateName(), (Transitions.find(Nodes[i].GetStateName()))->second);
         }
     }
+    /*auto it = ChangeState.find(InitialID);
+    if (it != ChangeState.end()){
+        InitialID = it->second;
+    }*/
+}
+
+void Minimize::ExtractTokens(){
+    for(int i = 0; i < States.size(); i++){
+        if(States[i].isAcceptState()){
+            Tokens.emplace(States[i].getStateId(), States[i].getAcceptStateToken());
+        }
+    }
+}
+
+unordered_map<int, vector<int>> Minimize::GetTransitions(){
+    return this->TransitionsMinimize;
+}
+
+unordered_map<int, string> Minimize::GetTokens(){
+    return this->Tokens;
+}
+
+vector<char> Minimize::GetInputVector(){
+    return this->Inputs;
+}
+
+int Minimize::GetInitialID(){
+    return this->InitialID;
 }
 
 Minimize::~Minimize()

@@ -10,10 +10,12 @@
 class Minimize
 {
 private:
+    int InitialID;
 	vector<DFAState> States;
 	vector<char> Inputs;
 	unordered_map<int, vector<int>> Transitions;
 	unordered_map<int, vector<int>> TransitionsMinimize;
+	unordered_map<int, string> Tokens;
 	unordered_map<string, ColorNode> ColorUpdate;
 	unordered_map<int, int> StateColor;
 	vector<Node> Nodes;
@@ -23,8 +25,13 @@ private:
 	void UpdateColor();
 	void ClearDifferStrings();
 	void RemoveDeadState();
+	void ExtractTokens();
 public:
-	Minimize(vector<DFAState> States, vector<char> Inputs, unordered_map<int, vector<int>> Transitions);
+	Minimize(DFAState initialState, vector<DFAState> States, vector<char> Inputs, unordered_map<int, vector<int>> Transitions);
+	unordered_map<int, vector<int>> GetTransitions();
+	unordered_map<int, string> GetTokens();
+	vector<char> GetInputVector();
+	int GetInitialID();
 	~Minimize();
 };
 

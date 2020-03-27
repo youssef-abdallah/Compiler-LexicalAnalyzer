@@ -133,8 +133,10 @@
 1585229497 m:\projects\compiler-lexicalanalyzer\include\regulardefinition.h
 	"includes.h"
 
-1585260670 source:m:\projects\compiler-lexicalanalyzer\src\lexicalanalyzer.cpp
+1585323886 source:m:\projects\compiler-lexicalanalyzer\src\lexicalanalyzer.cpp
 	"../include/LexicalAnalyzer.h"
+	"Minimize.h"
+	"MinimizeDFASimulation.h"
 
 1585229497 source:m:\projects\compiler-lexicalanalyzer\src\nfabuilder.cpp
 	"../include/NFABuilder.h"
@@ -154,10 +156,10 @@
 1585229497 source:m:\projects\compiler-lexicalanalyzer\src\statemachine.cpp
 	"../include/StateMachine.h"
 
-1585136295 source:m:\projects\compiler-lexicalanalyzer\src\minimize.cpp
+1585323267 source:m:\projects\compiler-lexicalanalyzer\src\minimize.cpp
 	<Minimize.h>
 
-1585136932 m:\projects\compiler-lexicalanalyzer\include\minimize.h
+1585323038 m:\projects\compiler-lexicalanalyzer\include\minimize.h
 	<includes.h>
 	<Node.h>
 	<ColorNode.h>
@@ -188,7 +190,7 @@
 
 1585229497 m:\projects\compiler-lexicalanalyzer\include\dummy.h
 
-1585229497 m:\projects\compiler-lexicalanalyzer\include\dfabuilder.h
+1585317054 m:\projects\compiler-lexicalanalyzer\include\dfabuilder.h
 	"NFAState.h"
 	"StateMachine.h"
 	"includes.h"
@@ -204,7 +206,7 @@
 1585245649 source:m:\projects\compiler-lexicalanalyzer\src\colornode.cpp
 	"ColorNode.h"
 
-1585229497 source:m:\projects\compiler-lexicalanalyzer\src\dfabuilder.cpp
+1585317196 source:m:\projects\compiler-lexicalanalyzer\src\dfabuilder.cpp
 	"DFABuilder.h"
 
 1585229497 source:m:\projects\compiler-lexicalanalyzer\src\dfasimulator.cpp
@@ -212,4 +214,10 @@
 
 1585229497 source:m:\projects\compiler-lexicalanalyzer\src\nfasimulator.cpp
 	"NFASimulator.h"
+
+1585323811 source:m:\projects\compiler-lexicalanalyzer\src\minimizedfasimulation.cpp
+	<MinimizeDFASimulation.h>
+
+1585322610 m:\projects\compiler-lexicalanalyzer\include\minimizedfasimulation.h
+	<Minimize.h>
 
