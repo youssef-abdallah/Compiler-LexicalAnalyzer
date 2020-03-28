@@ -16,7 +16,6 @@ void Scanner::read_lexical_rules(std::string file_name){
     string next_line;
 
 
-
     if (input_file.is_open()){
         while (getline(input_file, next_line)){
             cout << next_line << endl;
@@ -31,12 +30,11 @@ void Scanner::read_lexical_rules(std::string file_name){
                 next_line = remove_spaces(next_line);
                 regular_def_scanner(next_line);
             }
-
         }
     }
-
     input_file.close();
-
+    add_special_expression(1);
+    add_special_expression(0);
 }
 
 
@@ -46,21 +44,25 @@ void Scanner::space_splitter(string str, char delim)
     line = line.substr(1, line.size() - 2);
     int index, pos;
     pos = 0;
+/*
     while ((index = line.find("\\", pos)) != (int) string::npos) {
         line.replace(index, 1, "" );
         pos = index + 1;
     }
+*/
     std::istringstream ss;
     ss.str(line);
     std::string token;
     // we need to check for leading spaces in the output keywords
     if (delim == '{') {
         while (std::getline(ss, token, ' ')) {
+            if (token == "") continue;
             keywords.push_back(token);
         }
     }
     else if (delim == '['){
         while (std::getline(ss, token, ' ')) {
+            if (token == "") continue;
             punctuations.push_back(token);
         }
     }
@@ -432,4 +434,74 @@ string Scanner::add_backslash_before(string line, string op){
         pos = index + 2;
     }
     return str;
+}
+
+void Scanner::add_special_expression(bool highest_priority){
+    vector<string> tokens;
+    if (highest_priority){
+        tokens = keywords;
+        for (int i = 0; i < tokens.size(); i++){
+            string str = tokens[i];
+            string temp;
+            temp.push_back('(');
+            for (int j = 0; j < str.size(); j++){
+                temp.push_back(str[j]);
+                if (j != str.size() - 1){
+                    temp.push_back('~');
+                }
+            }
+            temp.push_back(')');
+            RegularExpression re;
+            re.setExpression(temp);
+            re.setExpressionType(str);
+            keywords_expression.push_back(re);
+        }
+        add_first();
+    }else{
+        tokens = punctuations;
+        for (int i = 0; i < tokens.size(); i++){
+            string str = tokens[i];
+            if (str == "(")
+                str = "\(";
+            else if (str == ")")
+                str = "\)";
+            RegularExpression re;
+            re.setExpressionType(tokens[i]);
+            re.setExpression(str);
+            reg_expressions.push_back(re);
+        }
+    }
+
+}
+
+void Scanner::add_first(){
+    vector<RegularExpression> temp;
+    temp = keywords_expression;
+    for (int i = 0; i < reg_expressions.size(); i++){
+        temp.push_back(reg_expressions[i]);
+    }
+    reg_expressions = temp;
+}
+
+vector<string> Scanner::process_input_program(string file_name){
+    vector<string> results;
+    fstream input_file;
+    input_file.open (file_name, std::fstream::in | std::fstream::out | std::fstream::app);
+    string next_line;
+
+    if (input_file.is_open()){
+        while (getline(input_file, next_line)){
+            std::istringstream ss;
+            ss.str(next_line);
+            std::string token;
+
+            while (std::getline(ss, token, ' ')) {
+                if (token == "") continue;
+                    results.push_back(token);
+                }
+            }
+
+    }
+    input_file.close();
+    return results;
 }

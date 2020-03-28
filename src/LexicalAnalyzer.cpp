@@ -26,7 +26,8 @@ void LexicalAnalyzer::execute() {
     builder.buildDFA();
     Minimize minimize(builder.getInitialState(),builder.GetAllState(),builder.GetInputs(),builder.getReducedTable());
     NFASimulator simulator;
-    cout << simulator.simulate(combinedStateMachine, "123") << '\n';
+    vector<string> results = Scanner::getInstance().process_input_program("./test/input_program.txt");
+    /*cout << simulator.simulate(combinedStateMachine, "123") << '\n';
     DFASimulator dfaSimulator;
     cout << dfaSimulator.simulate(builder.getInitialState(), "123") << '\n';
     MinimizeDFASimulation minsimulator(minimize);
@@ -40,7 +41,14 @@ void LexicalAnalyzer::execute() {
     minsimulator.Reset();
     cout << minsimulator.GEtTokenForInput("*") << '\n';
     minsimulator.Reset();
-    cout << minsimulator.GEtTokenForInput("$") << '\n';
+    cout << minsimulator.GEtTokenForInput("int") << '\n';
     minsimulator.Reset();
-    cout << minsimulator.GEtTokenForInput("=") << '\n';
+    cout << minsimulator.GEtTokenForInput("\(") << '\n';*/
+
+    MinimizeDFASimulation minsimulator(minimize);
+    for (int i = 0; i < results.size(); i++){
+        cout << minsimulator.GEtTokenForInput(results[i]) << '\n';
+        minsimulator.Reset();
+    }
+
 }

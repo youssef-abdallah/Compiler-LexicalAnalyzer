@@ -18,6 +18,7 @@ public:
 
     vector<RegularDefinition> reg_definitions;
     vector<RegularExpression> reg_expressions;
+    vector<string> process_input_program(string file_name);
 
 
     Scanner(Scanner const&) = delete;
@@ -29,6 +30,8 @@ private:
     char conc_operator = '~';
     char epsilon = 0;
     bool has_definitions = false;
+    vector<RegularExpression> keywords_expression;
+
 
     void space_splitter(string line, char delim);
     void regular_def_scanner(string line);
@@ -42,5 +45,7 @@ private:
     string remove_spaces(string line);
     string insert_concatination_op(string line, int st, int length);
     string add_backslash_before(string line, string s);
+    void add_special_expression(bool highest_priority);
+    void add_first();
 
 };
