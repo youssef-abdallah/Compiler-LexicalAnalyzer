@@ -41,9 +41,7 @@ void Scanner::read_lexical_rules(std::string file_name){
 void Scanner::space_splitter(string str, char delim)
 {
     string line = str;
-    line = line.substr(1, line.size() - 2);
-    int index, pos;
-    pos = 0;
+    line = line.substr(1, (int) line.size() - 2);
 /*
     while ((index = line.find("\\", pos)) != (int) string::npos) {
         line.replace(index, 1, "" );
@@ -440,13 +438,13 @@ void Scanner::add_special_expression(bool highest_priority){
     vector<string> tokens;
     if (highest_priority){
         tokens = keywords;
-        for (int i = 0; i < tokens.size(); i++){
+        for (int i = 0; i < (int) tokens.size(); i++){
             string str = tokens[i];
             string temp;
             temp.push_back('(');
-            for (int j = 0; j < str.size(); j++){
+            for (int j = 0; j < (int) str.size(); j++){
                 temp.push_back(str[j]);
-                if (j != str.size() - 1){
+                if (j != (int) str.size() - 1){
                     temp.push_back('~');
                 }
             }
@@ -459,15 +457,15 @@ void Scanner::add_special_expression(bool highest_priority){
         add_first();
     }else{
         tokens = punctuations;
-        for (int i = 0; i < tokens.size(); i++){
+        for (int i = 0; i < (int) tokens.size(); i++){
             string str = tokens[i];
             if (str == "(")
-                str = "\(";
+                str = "\\(";
             else if (str == ")")
-                str = "\)";
+                str = "\\)";
             RegularExpression re;
-            re.setExpressionType(tokens[i]);
-            re.setExpression(str);
+            re.setExpressionType(str);
+            re.setExpression(tokens[i]);
             reg_expressions.push_back(re);
         }
     }
@@ -477,7 +475,7 @@ void Scanner::add_special_expression(bool highest_priority){
 void Scanner::add_first(){
     vector<RegularExpression> temp;
     temp = keywords_expression;
-    for (int i = 0; i < reg_expressions.size(); i++){
+    for (int i = 0; i < (int) reg_expressions.size(); i++){
         temp.push_back(reg_expressions[i]);
     }
     reg_expressions = temp;

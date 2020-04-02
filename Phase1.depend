@@ -73,7 +73,7 @@
 
 1585188061 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/StateMachine.h
 
-1584981803 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/Scanner.h
+1585834639 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/Scanner.h
 	"includes.h"
 	<map>
 	"RegularDefinition.h"
@@ -82,7 +82,7 @@
 1584974940 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/RegularDefinition.h
 	"includes.h"
 
-1585327254 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/LexicalAnalyzer.cpp
+1585842010 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/LexicalAnalyzer.cpp
 	"../include/LexicalAnalyzer.h"
 
 1585188061 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/NFABuilder.cpp
@@ -97,7 +97,7 @@
 	"../include/RegularExpression.h"
 	"../include/RegularExpression.h"
 
-1585327254 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/Scanner.cpp
+1585837809 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/Scanner.cpp
 	"../include/Scanner.h"
 
 1585188061 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/StateMachine.cpp
@@ -456,7 +456,7 @@
 
 1585327253 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/ColorNode.h
 
-1585327253 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/MinimizeDFASimulation.h
+1585842081 /home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/include/MinimizeDFASimulation.h
 	<Minimize.h>
 
 1585327254 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/ColorNode.cpp
@@ -465,7 +465,7 @@
 1585327254 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/Minimize.cpp
 	<Minimize.h>
 
-1585327254 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/MinimizeDFASimulation.cpp
+1585842587 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/MinimizeDFASimulation.cpp
 	<MinimizeDFASimulation.h>
 
 1585327254 source:/home/youssef/Problem Solving/educational round 74 cF/CompilerPhase1/Phase1/src/Node.cpp

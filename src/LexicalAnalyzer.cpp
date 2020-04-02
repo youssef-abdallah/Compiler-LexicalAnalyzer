@@ -46,8 +46,8 @@ void LexicalAnalyzer::execute() {
     cout << minsimulator.GEtTokenForInput("\(") << '\n';*/
 
     MinimizeDFASimulation minsimulator(minimize);
-    for (int i = 0; i < results.size(); i++){
-        cout << minsimulator.GEtTokenForInput(results[i]) << '\n';
+    for (int i = 0; i < (int) results.size(); i++){
+        cout << minsimulator.simulate(results[i]) << '\n';
         minsimulator.Reset();
     }
 
